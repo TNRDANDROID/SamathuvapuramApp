@@ -589,4 +589,70 @@ public class ModelClass {
         this.blockName = blockName;
         return this;
     }
+
+
+    /////House List
+    private int current_beneficiary_id;
+    private int house_serial_number;
+    private String is_house_owned_by_sanctioned_beneficiary;
+    private String current_house_usage;
+    private String current_name_of_the_beneficiary;
+    private String current_gender;
+    private String current_community_category_id;
+
+    public int getCurrent_beneficiary_id() {
+        return current_beneficiary_id;
+    }
+
+    public void setCurrent_beneficiary_id(int current_beneficiary_id) {
+        this.current_beneficiary_id = current_beneficiary_id;
+    }
+
+    public int getHouse_serial_number() {
+        return house_serial_number;
+    }
+
+    public void setHouse_serial_number(int house_serial_number) {
+        this.house_serial_number = house_serial_number;
+    }
+
+    public String getIs_house_owned_by_sanctioned_beneficiary() {
+        return is_house_owned_by_sanctioned_beneficiary;
+    }
+
+    public void setIs_house_owned_by_sanctioned_beneficiary(String is_house_owned_by_sanctioned_beneficiary) {
+        this.is_house_owned_by_sanctioned_beneficiary = is_house_owned_by_sanctioned_beneficiary;
+    }
+
+    public String getCurrent_house_usage() {
+        return current_house_usage;
+    }
+
+    public void setCurrent_house_usage(String current_house_usage) {
+        this.current_house_usage = current_house_usage;
+    }
+
+    public String getCurrent_name_of_the_beneficiary() {
+        return current_name_of_the_beneficiary;
+    }
+
+    public void setCurrent_name_of_the_beneficiary(String current_name_of_the_beneficiary) {
+        this.current_name_of_the_beneficiary = current_name_of_the_beneficiary;
+    }
+
+    public String getCurrent_gender() {
+        return current_gender;
+    }
+
+    public void setCurrent_gender(String current_gender) {
+        this.current_gender = current_gender;
+    }
+
+    public String getCurrent_community_category_id() {
+        return current_community_category_id;
+    }
+
+    public void setCurrent_community_category_id(String current_community_category_id) {
+        this.current_community_category_id = current_community_category_id;
+    }
 }

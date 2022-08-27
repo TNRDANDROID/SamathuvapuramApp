@@ -271,8 +271,16 @@ public class dbData {
     public void Insert_house_list(ModelClass modelClass) {
 
         ContentValues values = new ContentValues();
+        values.put("current_beneficiary_id", modelClass.getCurrent_beneficiary_id());
         values.put("samathuvapuram_id", modelClass.getSamathuvapuram_id());
-        values.put("name", modelClass.getName());
+        values.put("house_serial_number", modelClass.getHouse_serial_number());
+        values.put("is_house_owned_by_sanctioned_beneficiary", modelClass.getIs_house_owned_by_sanctioned_beneficiary());
+        values.put("current_house_usage", modelClass.getCurrent_house_usage());
+        values.put("current_name_of_the_beneficiary", modelClass.getCurrent_name_of_the_beneficiary());
+        values.put("current_gender", modelClass.getCurrent_gender());
+        values.put("current_community_category_id", modelClass.getCurrent_community_category_id());
+        values.put("current_usage", modelClass.getCurrent_usage());
+        values.put("is_beneficiary_detail_required", modelClass.getIs_beneficiary_detail_required());
 
         long id = db.insert(DBHelper.HOUSE_LIST,null,values);
         Log.d("Ins_id_samathuvapuram", String.valueOf(id));
@@ -358,22 +366,45 @@ public class dbData {
         }
         return cards;
     }
-    public ArrayList<ModelClass> getAllhouselist() {
+    public ArrayList<ModelClass> getAll_Particular_samathuvapuram_houselist(String samathuvapuram_id) {
 
         ArrayList<ModelClass> cards = new ArrayList<>();
         Cursor cursor = null;
-
+        String selection;
+        String[] selectionArgs;
         try {
-            cursor = db.rawQuery("select * from "+DBHelper.HOUSE_LIST,null);
+                selection = "samathuvapuram_id = ?";
+                selectionArgs = new String[]{samathuvapuram_id};
+
+
+            cursor = db.query(DBHelper.HOUSE_LIST,new String[]{"*"},
+                    selection, selectionArgs, null, null, "current_beneficiary_id");
+            //cursor = db.rawQuery("select * from "+DBHelper.HOUSE_LIST,null);
             // cursor = db.query(CardsDBHelper.TABLE_CARDS,
             //       COLUMNS, null, null, null, null, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
                     ModelClass card = new ModelClass();
+                    card.setCurrent_beneficiary_id(cursor.getInt(cursor
+                            .getColumnIndexOrThrow("current_beneficiary_id")));
                     card.setSamathuvapuram_id(cursor.getInt(cursor
                             .getColumnIndexOrThrow("samathuvapuram_id")));
-                    card.setName(cursor.getString(cursor
-                            .getColumnIndexOrThrow("name")));
+                    card.setHouse_serial_number(cursor.getInt(cursor
+                            .getColumnIndexOrThrow("house_serial_number")));
+                    card.setIs_house_owned_by_sanctioned_beneficiary(cursor.getString(cursor
+                            .getColumnIndexOrThrow("is_house_owned_by_sanctioned_beneficiary")));
+                    card.setCurrent_house_usage(cursor.getString(cursor
+                            .getColumnIndexOrThrow("current_house_usage")));
+                    card.setCurrent_name_of_the_beneficiary(cursor.getString(cursor
+                            .getColumnIndexOrThrow("current_name_of_the_beneficiary")));
+                    card.setCurrent_gender(cursor.getString(cursor
+                            .getColumnIndexOrThrow("current_gender")));
+                    card.setCurrent_community_category_id(cursor.getString(cursor
+                            .getColumnIndexOrThrow("current_community_category_id")));
+                    card.setCurrent_usage(cursor.getString(cursor
+                            .getColumnIndexOrThrow("current_usage")));
+                    card.setIs_beneficiary_detail_required(cursor.getString(cursor
+                            .getColumnIndexOrThrow("is_beneficiary_detail_required")));
 
 
                     cards.add(card);

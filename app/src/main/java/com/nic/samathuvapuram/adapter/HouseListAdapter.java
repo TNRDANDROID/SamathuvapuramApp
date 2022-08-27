@@ -61,8 +61,8 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.houseListAdapterBinding.name.setText(list.get(position).getName());
-        holder.houseListAdapterBinding.number.setText(String.valueOf(list.get(position).getSamathuvapuram_id()));
+        holder.houseListAdapterBinding.name.setText(list.get(position).getCurrent_name_of_the_beneficiary());
+        holder.houseListAdapterBinding.number.setText(String.valueOf(list.get(position).getHouse_serial_number()));
 
         holder.houseListAdapterBinding.number.setOnClickListener(new View.OnClickListener() {
             @Override

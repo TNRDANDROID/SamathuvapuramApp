@@ -48,7 +48,7 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
     private ArrayList<ModelClass> houselist = new ArrayList<>();
     private ProgressHUD progressHUD;
     HouseListAdapter houseListAdapter;
-    String samathuvapuram_id;
+    int samathuvapuram_id;
     
 
     @Override
@@ -64,7 +64,7 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
         } catch (Exception e) {
             e.printStackTrace();
         }
-        samathuvapuram_id = getIntent().getStringExtra("samathuvapuram_id");
+        samathuvapuram_id = getIntent().getIntExtra("samathuvapuram_id",0);
         houseListScreenBinding.recycler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
         houseListScreenBinding.recycler.setItemAnimator(new DefaultItemAnimator());
         houseListScreenBinding.recycler.setHasFixedSize(true);
@@ -72,7 +72,7 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
         houseListScreenBinding.recycler.setFocusable(false);
 
 //        house_list();
-
+/*
         //Sample
         JSONObject jsonObject = new JSONObject();
         String json = "{\"STATUS\":\"OK\",\"RESPONSE\":\"OK\",\"JSON_DATA\":[{\"id\":1,\"tax\":\"Property tax\"},{\"id\":2,\"tax\":\"Water Charges\"},{\"id\":3,\"tax\":\"Professional Tax\"},{\"id\":4,\"tax\":\"Non Tax\"},{\"id\":5,\"tax\":\"Trade License \"}]}";
@@ -86,8 +86,14 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-        new fetch_House_list().execute();
+        }*/
+        //new fetch_House_list().execute();
+       if(Utils.isOnline()){
+           house_list();
+       }
+       else {
+           new fetch_House_list().execute();
+       }
 
     }
 
@@ -98,7 +104,7 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
         protected ArrayList<ModelClass> doInBackground(Void... params) {
             dbData.open();
             houselist = new ArrayList<>();
-            houselist = dbData.getAllhouselist();
+            houselist = dbData.getAll_Particular_samathuvapuram_houselist(String.valueOf(samathuvapuram_id));
             Log.d("houselist_COUNT", String.valueOf(houselist.size()));
             return houselist;
         }
@@ -212,8 +218,16 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
 
                         ModelClass ListValue = new ModelClass();
                         try {
-                            ListValue.setSamathuvapuram_id(jsonArray.getJSONObject(i).getInt("id"));
-                            ListValue.setName(jsonArray.getJSONObject(i).getString("tax"));
+                            ListValue.setCurrent_beneficiary_id(jsonArray.getJSONObject(i).getInt("current_beneficiary_id"));
+                            ListValue.setSamathuvapuram_id(jsonArray.getJSONObject(i).getInt("samathuvapuram_id"));
+                            ListValue.setHouse_serial_number(jsonArray.getJSONObject(i).getInt("house_serial_number"));
+                            ListValue.setIs_house_owned_by_sanctioned_beneficiary(jsonArray.getJSONObject(i).getString("is_house_owned_by_sanctioned_beneficiary"));
+                            ListValue.setCurrent_house_usage(jsonArray.getJSONObject(i).getString("current_house_usage"));
+                            ListValue.setCurrent_name_of_the_beneficiary(jsonArray.getJSONObject(i).getString("current_name_of_the_beneficiary"));
+                            ListValue.setCurrent_gender(jsonArray.getJSONObject(i).getString("current_gender"));
+                            ListValue.setCurrent_community_category_id(jsonArray.getJSONObject(i).getString("current_community_category_id"));
+                            ListValue.setCurrent_usage(jsonArray.getJSONObject(i).getString("current_usage"));
+                            ListValue.setIs_beneficiary_detail_required(jsonArray.getJSONObject(i).getString("is_beneficiary_detail_required"));
                             dbData.Insert_house_list(ListValue);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -229,7 +243,7 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
+            new  fetch_House_list().execute();
         }
     }
     

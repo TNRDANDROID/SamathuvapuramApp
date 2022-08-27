@@ -82,7 +82,7 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
         homeScreenBinding.recycler.setHasFixedSize(true);
         homeScreenBinding.recycler.setNestedScrollingEnabled(false);
         homeScreenBinding.recycler.setFocusable(false);
-        fetAllApi();
+        //fetAllApi();
         /*//Sample
         JSONObject jsonObject = new JSONObject();
         String json = "{\"STATUS\":\"OK\",\"RESPONSE\":\"OK\",\"JSON_DATA\":[{\"id\":1,\"tax\":\"Property tax\"},{\"id\":2,\"tax\":\"Water Charges\"},{\"id\":3,\"tax\":\"Professional Tax\"},{\"id\":4,\"tax\":\"Non Tax\"},{\"id\":5,\"tax\":\"Trade License \"}]}";
@@ -95,8 +95,13 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
         } catch (JSONException e) { e.printStackTrace(); }*/
 
 
-        accessController();
-        new fetchSamathuvapuram_details().execute();
+        if(Utils.isOnline()){
+            fetAllApi();
+        }
+        else {
+            accessController();
+            new fetchSamathuvapuram_details().execute();
+        }
 
         syncButtonVisibility();
     }
@@ -114,8 +119,7 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
 
     }
 
-    public class fetchSamathuvapuram_details extends AsyncTask<Void, Void,
-            ArrayList<ModelClass>> {
+    public class fetchSamathuvapuram_details extends AsyncTask<Void, Void,ArrayList<ModelClass>> {
         @Override
         protected ArrayList<ModelClass> doInBackground(Void... params) {
             dbData.open();
@@ -149,8 +153,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
 
 
 
-        private void accessController(){
-            dbData.open();
+    private void accessController(){
+        dbData.open();
         ArrayList<ModelClass> accessList = new ArrayList<>();
         accessList.addAll(dbData.getAll_Menu_Access_Control());
         if(accessList.size()>0){
@@ -535,6 +539,7 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            accessController();
 
         }
     }
@@ -596,7 +601,13 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                             ListValue.setLocalbody_type_id(jsonArray.getJSONObject(i).getInt("localbody_type_id"));
                             ListValue.setDcode(jsonArray.getJSONObject(i).getInt("dcode"));
                             ListValue.setBcode(jsonArray.getJSONObject(i).getInt("bcode"));
-                            ListValue.setTpcode(jsonArray.getJSONObject(i).getInt("tpcode"));
+                            //ListValue.setTpcode(jsonArray.getJSONObject(i).getInt("tpcode"));
+                            if(jsonArray.getJSONObject(i).getString("tpcode").equals("")){
+                                ListValue.setTpcode(0);
+                            }
+                            else {
+                                ListValue.setTpcode(jsonArray.getJSONObject(i).getInt("tpcode"));
+                            }
                             ListValue.setNo_of_houses_constructed(jsonArray.getJSONObject(i).getInt("no_of_houses_constructed"));
                             ListValue.setPvCode(jsonArray.getJSONObject(i).getString("pvcode"));
                             ListValue.setHabCode(jsonArray.getJSONObject(i).getString("hab_code"));
@@ -624,6 +635,7 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            new  fetchSamathuvapuram_details().execute();
 
         }
     }

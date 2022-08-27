@@ -30,6 +30,7 @@
                     android:baselineAligned="false"
                     tools:ignore="UselessParent">
                     <LinearLayout
+                        android:padding="@dimen/_10sdp"
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:orientation="vertical"
@@ -37,6 +38,7 @@
                         android:layout_height="wrap_content">
 
                             <LinearLayout
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
                                 android:id="@+id/dname_layout"
@@ -56,11 +58,13 @@
                                     android:layout_weight="0.2"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text=":"
                                     />
                                 <TextView
+                                    android:layout_gravity="center"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
@@ -74,6 +78,7 @@
 
                             </LinearLayout>
                             <LinearLayout
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
                                 android:id="@+id/bname_layout"
@@ -89,6 +94,7 @@
                                     android:text="Block Name"
                                     />
                                 <TextView
+                                    android:layout_gravity="center"
                                     android:layout_width="0dp"
                                     android:layout_weight="0.2"
                                     android:layout_height="wrap_content"
@@ -102,6 +108,7 @@
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/bname"
+                                    android:layout_gravity="center"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
@@ -111,6 +118,7 @@
 
                             </LinearLayout>
                             <LinearLayout
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
                                 android:id="@+id/pvname_layout"
@@ -130,6 +138,7 @@
                                     android:layout_weight="0.2"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text=":"
@@ -140,6 +149,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/pvname"
                                     android:gravity="start"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text="pvname"
@@ -147,6 +157,7 @@
 
                             </LinearLayout>
                             <LinearLayout
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
                                 android:id="@+id/habitation_name_layout"
@@ -165,6 +176,7 @@
                                     android:layout_width="0dp"
                                     android:layout_weight="0.2"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
@@ -176,6 +188,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/habitation_name"
                                     android:gravity="start"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text="habitation_name"
@@ -183,6 +196,7 @@
 
                             </LinearLayout>
                             <LinearLayout
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
                                 android:id="@+id/townpanchayat_name_layout"
@@ -200,6 +214,7 @@
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_weight="0.2"
+                                    android:layout_gravity="center"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:textColor="@color/grey_9"
@@ -212,6 +227,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/townpanchayat_name"
                                     android:gravity="start"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text="townpanchayat_name"
@@ -219,6 +235,7 @@
 
                             </LinearLayout>
                             <LinearLayout
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
                                 android:id="@+id/municipality_name_layout"
@@ -238,6 +255,7 @@
                                     android:layout_weight="0.2"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text=":"
@@ -248,6 +266,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/municipality_name"
                                     android:gravity="start"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text="municipality_name"
@@ -255,6 +274,7 @@
 
                             </LinearLayout>
                             <LinearLayout
+                                android:gravity="center"
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
                                 android:id="@+id/corporation_name_layout"
@@ -274,6 +294,7 @@
                                     android:layout_weight="0.2"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text=":"
@@ -284,6 +305,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/corporation_name"
                                     android:gravity="start"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text="corporation_name"
@@ -293,6 +315,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
+                                android:gravity="center"
                                 android:id="@+id/year_of_construction_layout"
                                 android:padding="@dimen/_3sdp"
                                 android:layout_height="wrap_content">
@@ -310,6 +333,7 @@
                                     android:layout_weight="0.2"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text=":"
@@ -320,6 +344,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/year_of_construction"
                                     android:gravity="start"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text="year_of_construction"
@@ -329,6 +354,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:weightSum="2"
+                                android:gravity="center"
                                 android:id="@+id/no_of_houses_constructed_layout"
                                 android:padding="@dimen/_3sdp"
                                 android:layout_height="wrap_content">
@@ -346,6 +372,7 @@
                                     android:layout_weight="0.2"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text=":"
@@ -356,6 +383,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/no_of_houses_constructed"
                                     android:gravity="start"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
                                     android:textSize="@dimen/_14sdp"
                                     android:text="no_of_houses_constructed"

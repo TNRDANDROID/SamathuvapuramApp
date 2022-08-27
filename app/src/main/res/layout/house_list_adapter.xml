@@ -36,6 +36,7 @@
             android:layout_toEndOf="@+id/img_layout"
             android:layout_marginStart="-35dp">
             <RelativeLayout
+                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_25sdp">

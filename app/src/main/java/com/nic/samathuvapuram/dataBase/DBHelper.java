@@ -85,9 +85,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         db.execSQL("CREATE TABLE " + HOUSE_LIST + " ("
-                + "samathuvapuram_id INTEGER," +
-                "name TEXT," +
-                "description TEXT)");
+                + "current_beneficiary_id INTEGER," +
+                "samathuvapuram_id INTEGER," +
+                "house_serial_number INTEGER," +
+                "is_house_owned_by_sanctioned_beneficiary TEXT," +
+                "current_house_usage TEXT," +
+                "current_name_of_the_beneficiary TEXT," +
+                "current_gender TEXT," +
+                "current_community_category_id TEXT," +
+                "current_usage TEXT," +
+                "is_beneficiary_detail_required TEXT)");
 
         db.execSQL("CREATE TABLE " + CURRENT_HOUSE_USAGE + " ("
                 + "current_usage_id INTEGER," +
