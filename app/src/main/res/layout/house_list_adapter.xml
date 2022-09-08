@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="@dimen/_5sdp"
         android:clickable="true"
@@ -32,13 +32,16 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="-35dp"
             android:layout_marginTop="@dimen/_40sdp"
-            android:background="@drawable/cornered_rect_lite_bg_green"
+            android:background="@drawable/button_bg_grey"
             android:layout_toEndOf="@+id/img_layout"
             android:layout_marginStart="-35dp">
             <RelativeLayout
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_25sdp">
             <LinearLayout
              android:layout_width="match_parent"
@@ -53,17 +56,16 @@
                         android:layout_width="0dp"
                         android:layout_weight="0.8"
                         android:layout_height="wrap_content"
-                        android:id="@+id/name_h"
+                        android:id="@+id/house_serial_number_h"
                         android:gravity="start"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp"
-                        android:text="name"
+                        android:text="House Sl.no"
                         />
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="0.2"
                         android:layout_height="wrap_content"
-                        android:id="@+id/colon"
                         android:gravity="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp"
@@ -73,15 +75,175 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:id="@+id/name"
+                        android:id="@+id/house_serial_number"
                         android:gravity="start"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp"
-                        android:text="name"
                         />
 
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:padding="@dimen/_3sdp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/current_name_of_the_beneficiary_h"
+                        android:gravity="start"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Beneficiary name"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text=":"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/current_name_of_the_beneficiary"
+                        android:gravity="start"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:padding="@dimen/_3sdp"
+                    android:id="@+id/current_house_usage_layout"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/current_house_usage_h"
+                        android:gravity="start"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Usage of house"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text=":"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/current_house_usage"
+                        android:gravity="start"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:id="@+id/estimate_cost_required_layout"
+                    android:padding="@dimen/_3sdp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/estimate_cost_required_h"
+                        android:gravity="start"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Cost estimation"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text=":"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/estimate_cost_required"
+                        android:gravity="start"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:id="@+id/condition_of_house_layout"
+                    android:padding="@dimen/_3sdp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/condition_of_house_h"
+                        android:gravity="start"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Condition of house"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text=":"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/condition_of_house"
+                        android:gravity="start"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        />
+
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/view_online_images"
+                    android:gravity="end"
+                    android:clickable="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    android:text="@string/view_image"
+                    android:textStyle="bold"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="@dimen/_14sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    />
 
             </LinearLayout>
 
@@ -103,16 +265,14 @@
               android:layout_height="wrap_content"
               android:layout_gravity="center"
               >
-              <TextView
+              <ImageView
                   android:layout_width="@dimen/_40sdp"
                   android:layout_height="@dimen/_40sdp"
-                  android:id="@+id/number"
+                  android:id="@+id/img"
                   android:layout_centerInParent="true"
-                  android:text="38"
+                  android:src="@drawable/home"
                   android:gravity="center"
-                  android:textColor="@color/colorAccent"
-                  android:textSize="@dimen/_18sdp"
-                  android:textStyle="bold"
+                 android:padding="@dimen/_3sdp"
                   android:layout_centerHorizontal="true"/>
 
           </RelativeLayout>

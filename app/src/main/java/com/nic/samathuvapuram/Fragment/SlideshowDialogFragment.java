@@ -1,6 +1,8 @@
 package com.nic.samathuvapuram.Fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import com.nic.samathuvapuram.R;
 import com.nic.samathuvapuram.model.ModelClass;
 
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -28,6 +31,7 @@ public class SlideshowDialogFragment extends DialogFragment {
     private MyViewPagerAdapter myViewPagerAdapter;
     private TextView lblCount, lblTitle, lblDescription,lblDate,lblType;
     private int selectedPosition = 0;
+    String onOffType;
 
    public static SlideshowDialogFragment newInstance() {
         SlideshowDialogFragment f = new SlideshowDialogFragment();
@@ -47,6 +51,7 @@ public class SlideshowDialogFragment extends DialogFragment {
 
         images = (ArrayList<ModelClass>) getArguments().getSerializable("images");
         selectedPosition = getArguments().getInt("position");
+        onOffType = getArguments().getString("OnOffType");
 
         Log.i(TAG, "position: " + selectedPosition);
         Log.i(TAG, "images size: " + images.size());
@@ -120,9 +125,22 @@ public class SlideshowDialogFragment extends DialogFragment {
 
             ModelClass image = images.get(position);
 
-            Glide.with(getActivity()).load(image.getImage())
+            if(onOffType.equals("Online")){
+                Glide.with(getActivity()).load(image.getImage())
+                        .thumbnail(0.5f)
+                        .into(imageViewPreview);
+            }else {
+                File imgFile = new File(image.getImage_path());
+                if(imgFile.exists()){
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    imageViewPreview.setImageBitmap(myBitmap);
+                }
+            }
+
+
+           /* Glide.with(getActivity()).load(image.getImage())
                     .thumbnail(0.5f)
-                    .into(imageViewPreview);
+                    .into(imageViewPreview);*/
 
             container.addView(view);
 

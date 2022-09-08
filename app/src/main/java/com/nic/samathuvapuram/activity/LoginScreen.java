@@ -77,7 +77,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         intializeUI();
 
-
     }
 
     public void intializeUI() {
@@ -161,10 +160,13 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     }
 
     public void checkLoginScreen() {
+
         loginScreenBinding.userName.setText("blkadmin");
         loginScreenBinding.password.setText("test123#$");//BDO
-       /* loginScreenBinding.userName.setText("aeblkadmin");
-        loginScreenBinding.password.setText("test123#$");//AE*/
+
+      /*  loginScreenBinding.userName.setText("aeblkadmin");
+        loginScreenBinding.password.setText("test123#$");//AE
+*/
         final String username = loginScreenBinding.userName.getText().toString().trim();
         final String password = loginScreenBinding.password.getText().toString().trim();
         prefManager.setUserPassword(password);

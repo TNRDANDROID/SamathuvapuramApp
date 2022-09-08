@@ -115,4 +115,5 @@ dependencies {
 
     ///Camera
     implementation 'com.github.maayyaannkk:ImagePicker:1.0.13'
+    implementation 'android.arch.paging:runtime:1.0.1'
 }

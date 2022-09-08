@@ -23,6 +23,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static  final String MENU_ACCESS_CONTROL="menu_access_control";
     public static  final String SAMATHUVAPURAM_DETAILS="samathuvapuram_details";
     public static  final String HOUSE_LIST="house_list";
+    public static  final String INFRA_LIST="infra_list";
+    public static  final String HOUSE_DETAILS="house_details";
+    public static  final String HOUSE_IMAGES_DETAILS="house_image_details";
 
     private Context context;
 
@@ -94,7 +97,68 @@ public class DBHelper extends SQLiteOpenHelper {
                 "current_gender TEXT," +
                 "current_community_category_id TEXT," +
                 "current_usage TEXT," +
-                "is_beneficiary_detail_required TEXT)");
+                "is_beneficiary_detail_required TEXT," +
+
+                "name_of_the_beneficiary TEXT," +
+                "gender TEXT," +
+                "community_category_id INTEGER," +
+                "house_sanctioned_order_no TEXT," +
+                "condition_of_house_id INTEGER," +
+                "scheme_group_id INTEGER," +
+                "scheme_id INTEGER," +
+                "work_group_id INTEGER," +
+                "work_type_id INTEGER," +
+                "estimate_cost_required TEXT," +
+                "condition_of_house TEXT)");
+
+        db.execSQL("CREATE TABLE " + INFRA_LIST + " ("
+                + "repair_infra_estimate_id INTEGER," +
+                "samathuvapuram_id INTEGER," +
+                "scheme_group_id INTEGER," +
+                "scheme_id INTEGER," +
+                "work_group_id INTEGER," +
+                "work_type_id INTEGER," +
+                "condition_of_infra_id INTEGER," +
+                "condition_of_infra TEXT," +
+                "estimate_cost_required TEXT," +
+                "scheme_name TEXT," +
+                "work_name TEXT)");
+
+
+        db.execSQL("CREATE TABLE " + HOUSE_DETAILS + " ("
+                + "current_house_usage_id INTEGER," +
+                "samathuvapuram_id INTEGER," +
+                "house_serial_number INTEGER," +
+                "current_house_usage TEXT," +
+                "Type TEXT," +
+                "is_house_owned_by_sanctioned_beneficiary TEXT," +
+                "current_name_of_the_beneficiary TEXT," +
+                "current_gender TEXT," +
+                "current_community_category_id TEXT," +
+                "condition_of_house TEXT," +
+                "condition_of_house_id INTEGER," +
+                "condition_of_infra TEXT," +
+                "condition_of_infra_id INTEGER," +
+                "scheme_group_id INTEGER," +
+                "scheme_id INTEGER," +
+                "scheme TEXT," +
+                "work TEXT," +
+                "work_group_id INTEGER," +
+                "work_type_id INTEGER," +
+                "estimate_cost_required TEXT)");
+
+        db.execSQL("CREATE TABLE " + HOUSE_IMAGES_DETAILS + " ("
+                + "image_serial_number INTEGER," +
+                "photo_type_id INTEGER," +
+                "house_serial_number INTEGER," +
+                "samathuvapuram_id INTEGER," +
+                "scheme_group_id INTEGER," +
+                "scheme_id INTEGER," +
+                "work_group_id INTEGER," +
+                "work_type_id INTEGER," +
+                "latitude TEXT," +
+                "longitude TEXT," +
+                "image_path TEXT)");
 
         db.execSQL("CREATE TABLE " + CURRENT_HOUSE_USAGE + " ("
                 + "current_usage_id INTEGER," +
@@ -166,6 +230,9 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + WORK_TYPE);
             db.execSQL("DROP TABLE IF EXISTS " + SAMATHUVAPURAM_DETAILS);
             db.execSQL("DROP TABLE IF EXISTS " + HOUSE_LIST);
+            db.execSQL("DROP TABLE IF EXISTS " + HOUSE_DETAILS);
+            db.execSQL("DROP TABLE IF EXISTS " + HOUSE_IMAGES_DETAILS);
+            db.execSQL("DROP TABLE IF EXISTS " + INFRA_LIST);
 
             onCreate(db);
         }

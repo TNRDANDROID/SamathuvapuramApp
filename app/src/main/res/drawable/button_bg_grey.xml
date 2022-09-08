@@ -83,8 +83,8 @@
         <shape >
             <gradient
                 android:angle="90"
-                android:endColor="@color/grey_6"
-                android:startColor="@color/grey_6" />
+                android:endColor="@color/followers"
+                android:startColor="@color/address" />
             <corners
                 android:topLeftRadius="40dp"
                 android:bottomRightRadius="40dp"

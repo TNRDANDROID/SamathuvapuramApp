@@ -82,6 +82,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
         homeScreenBinding.recycler.setHasFixedSize(true);
         homeScreenBinding.recycler.setNestedScrollingEnabled(false);
         homeScreenBinding.recycler.setFocusable(false);
+
+        homeScreenBinding.synData.setVisibility(View.GONE);
         //fetAllApi();
         /*//Sample
         JSONObject jsonObject = new JSONObject();
@@ -100,10 +102,16 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
         }
         else {
             accessController();
-            new fetchSamathuvapuram_details().execute();
+
         }
 
         syncButtonVisibility();
+        homeScreenBinding.synData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPendingScreen();
+            }
+        });
     }
 
     private void fetAllApi() {
@@ -161,12 +169,23 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
             for (int i=0;i<accessList.size();i++){
                 if(accessList.get(i).getMenu_name().equals("ae_samathuvapuram_entry")){
                     if(accessList.get(i).getMenu_access_control().equals("Y")){
-
+                        prefManager.setUsertype("ae");
+                        if(Utils.isOnline()){
+                            blk_ae_samathuvapuram_details();
+                        }else {
+                            new fetchSamathuvapuram_details().execute();
+                        }
                          }
                 }
                 else if(accessList.get(i).getMenu_name().equals("bdo_samathuvapuram_entry")){
                     if(accessList.get(i).getMenu_access_control().equals("Y")){
-                        blk_bdo_samathuvapuram_details();
+                        prefManager.setUsertype("bdo");
+                        if(Utils.isOnline()){
+                            blk_bdo_samathuvapuram_details();
+                        }else {
+                            new fetchSamathuvapuram_details().execute();
+                        }
+
                         }
                 }
                 else {
@@ -186,6 +205,13 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
             e.printStackTrace();
         }
     }
+    public void blk_ae_samathuvapuram_details() {
+        try {
+            new ApiService(this).makeJSONObjectRequest("blk_ae_samathuvapuram_details", Api.Method.POST, UrlGenerator.getMainService(), blk_ae_samathuvapuram_details_JSONParams(), "not cache", this);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
     public void get_menu_access_control() {
         try {
             new ApiService(this).makeJSONObjectRequest("menu_access_control", Api.Method.POST, UrlGenerator.getMainService(), get_menu_access_control_JSONParams(), "not cache", this);
@@ -195,6 +221,14 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
     }
     public JSONObject blk_bdo_samathuvapuram_details_JSONParams() throws JSONException {
         String authKey = Utils.encrypt(prefManager.getUserPassKey(), getResources().getString(R.string.init_vector), Utils.blk_bdo_samathuvapuram_details_JsonParams().toString());
+        JSONObject dataSet = new JSONObject();
+        dataSet.put(AppConstant.KEY_USER_NAME, prefManager.getUserName());
+        dataSet.put(AppConstant.DATA_CONTENT, authKey);
+        Log.d("samathuvapuram_details", "" + dataSet);
+        return dataSet;
+    }
+    public JSONObject blk_ae_samathuvapuram_details_JSONParams() throws JSONException {
+        String authKey = Utils.encrypt(prefManager.getUserPassKey(), getResources().getString(R.string.init_vector), Utils.blk_ae_samathuvapuram_details_JsonParams().toString());
         JSONObject dataSet = new JSONObject();
         dataSet.put(AppConstant.KEY_USER_NAME, prefManager.getUserName());
         dataSet.put(AppConstant.DATA_CONTENT, authKey);
@@ -354,7 +388,7 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
 
     public void logout() {
         dbData.open();
-        ArrayList<ModelClass> ImageCount = new ArrayList<>()/*dbData.getSavedPMAYDetails()*/;
+        ArrayList<ModelClass> ImageCount = dbData.getSavedHouseImage();
         if (!Utils.isOnline()) {
             Utils.showAlert(this, "Logging out while offline may leads to loss of data!");
         } else {
@@ -370,6 +404,9 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
     protected void onResume() {
         super.onResume();
         syncButtonVisibility();
+        if(Utils.isOnline()){
+            blk_bdo_samathuvapuram_details();
+        }
     }
 
 
@@ -392,6 +429,17 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 Log.d("menu_access_control", "" + jsonObject);
             }
             if ("blk_bdo_samathuvapuram_details".equals(urlType) && responseObj != null) {
+                String key = responseObj.getString(AppConstant.ENCODE_DATA);
+                String responseDecryptedBlockKey = Utils.decrypt(prefManager.getUserPassKey(), key);
+                JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
+                if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
+                    new Insert_samathuvapuram_details().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
+                }
+                Log.d("samathuvapuram_details", "" + jsonObject);
+            }
+            if ("blk_ae_samathuvapuram_details".equals(urlType) && responseObj != null) {
                 String key = responseObj.getString(AppConstant.ENCODE_DATA);
                 String responseDecryptedBlockKey = Utils.decrypt(prefManager.getUserPassKey(), key);
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
@@ -834,9 +882,15 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
 
                         ModelClass ListValue = new ModelClass();
                         try {
+                            int scheme_disp_order=0;
                             ListValue.setScheme_group_id(jsonArray.getJSONObject(i).getInt("scheme_group_id"));
                             ListValue.setScheme_id(jsonArray.getJSONObject(i).getInt("scheme_id"));
-                            ListValue.setScheme_disp_order(jsonArray.getJSONObject(i).getString("scheme_disp_order"));
+                            if(jsonArray.getJSONObject(i).getString("scheme_disp_order").equals("")){
+                                scheme_disp_order=0;
+                            }else {
+                                scheme_disp_order=Integer.parseInt(jsonArray.getJSONObject(i).getString("scheme_disp_order"));
+                            }
+                            ListValue.setScheme_disp_order(scheme_disp_order);
                             ListValue.setCategory(jsonArray.getJSONObject(i).getString("category"));
                             ListValue.setHas_sub_type(jsonArray.getJSONObject(i).getString("has_sub_type"));
                             ListValue.setExisting_condition_required(jsonArray.getJSONObject(i).getString("existing_condition_required"));
@@ -934,22 +988,20 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
 
     public void syncButtonVisibility() {
         dbData.open();
-        ArrayList<ModelClass> workImageCount = new ArrayList<>()/*dbData.getSavedPMAYDetails()*/;
+        ArrayList<ModelClass> ImageCount = dbData.getSavedHouseImage();
 
-        if (workImageCount.size() > 0) {
+        if (ImageCount.size() > 0) {
             homeScreenBinding.synData.setVisibility(View.VISIBLE);
         }else {
             homeScreenBinding.synData.setVisibility(View.GONE);
         }
     }
 
-/*
     public void openPendingScreen() {
         Intent intent = new Intent(this, PendingScreen.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
-*/
 
 
 }

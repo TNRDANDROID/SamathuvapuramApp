@@ -6,7 +6,7 @@
 
         <variable
             name="adapter"
-            type="com.nic.samathuvapuram.adapter.NewPendingAdapter" />
+            type="com.nic.samathuvapuram.adapter.PendingScreenAdapter" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,52 +32,284 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_80sdp"
-                    android:id="@+id/view_offline_images"
-                    android:layout_marginStart="@dimen/_120sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_70sdp"
                     tools:ignore="UselessParent">
 
                     <LinearLayout
-                        android:id="@+id/batch_name_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/linear"
                         android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="2"
+                            android:padding="@dimen/_3sdp"
+                            android:id="@+id/house_no_layout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/house_serial_number_h"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text="House Sl.No"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text=":"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/house_serial_number"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:id="@+id/batch_number_text"
-                            android:textStyle="bold"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:textSize="@dimen/content_text_size"
-                            android:padding="@dimen/_2sdp"/>
-                        <!--  <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:text="Species Name : Mango"
-                              android:textColor="@color/white"
-                              android:id="@+id/species_name"
-                              android:textSize="@dimen/_11sdp"
-                              android:padding="@dimen/_2sdp"/>
-                          <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:text="Dead Count : 10"
-                              android:textColor="@color/white"
-                              android:id="@+id/dead_count"
-                              android:textSize="@dimen/_11sdp"
-                              android:padding="@dimen/_2sdp"/>-->
 
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="2"
+                            android:padding="@dimen/_3sdp"
+                            android:id="@+id/scheme_layout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/scheme_h"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text="Scheme"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text=":"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/scheme"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="2"
+                            android:padding="@dimen/_3sdp"
+                            android:id="@+id/work_layout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/work_h"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text="Work"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text=":"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/work"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="2"
+                            android:padding="@dimen/_3sdp"
+                            android:id="@+id/beneficiary_layout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/current_name_of_the_beneficiary_h"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text="Beneficiary name"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text=":"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/current_name_of_the_beneficiary"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="2"
+                            android:padding="@dimen/_3sdp"
+                            android:id="@+id/current_house_usage_layout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/current_house_usage_h"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text="Current house usage"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text=":"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/current_house_usage"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="2"
+                            android:padding="@dimen/_3sdp"
+                            android:id="@+id/condition_of_house_layout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/condition_of_house_h"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text="Condition of house"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text=":"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/condition_of_house"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="2"
+                            android:padding="@dimen/_3sdp"
+                            android:id="@+id/condition_of_infra_layout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/condition_of_infra_h"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text="Condition of infra"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                android:text=":"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/condition_of_infra"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp"
+                                />
+
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_below="@+id/batch_name_layout"
+                        android:layout_below="@+id/linear"
                         android:id="@+id/land_delete_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
                         android:orientation="horizontal">
 
                         <RelativeLayout
@@ -122,6 +354,20 @@
                                 android:paddingLeft="@dimen/_8sdp"
                                 android:paddingRight="@dimen/_8sdp"/>
                         </RelativeLayout>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/view_offline_images"
+                            android:gravity="end"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sdp"
+                            android:text="@string/view_image"
+                            android:textStyle="bold"
+                            android:layout_gravity="end"
+                            android:layout_marginRight="@dimen/_8sdp"
+                            />
+
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -133,8 +379,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
-            android:layout_width="@dimen/_90sdp"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_alignParentTop="true"
             android:padding="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_10sdp"

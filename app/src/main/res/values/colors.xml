@@ -21,6 +21,9 @@
     <color name="light_green">#f3fff3</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="pink">#bf63f9</color>
+    <color name="pink_light">#daa6fd</color>
+    <color name="pink_very_light">#f5e7ff</color>
 
     <color name="grey_1">#fafaf9</color>
     <color name="grey_2">#f3f2f2</color>

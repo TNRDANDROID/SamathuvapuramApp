@@ -1,5 +1,7 @@
 package com.nic.samathuvapuram.model;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by AchanthiSundar on 01-11-2017.
  */
@@ -12,11 +14,14 @@ public class ModelClass {
     private String HabCode;
     private String Description;
     private String Latitude;
+    private String Longtitude;
+    private String image_path;
+    private int image_serial_number;
     private String PvCode;
     private String PvName;
     private String blockName;
     private String HabitationName;
-    private String Image;
+    private Bitmap Image;
     private int menu_id;
     private String menu_name;
     private String menu_access_control;
@@ -39,7 +44,7 @@ public class ModelClass {
     private int estimate_type_id;
     private int scheme_group_id;
     private int scheme_id;
-    private String scheme_disp_order;
+    private int scheme_disp_order;
     private int work_group_id;
     private int work_type_id;
     private String work_name;
@@ -65,6 +70,94 @@ public class ModelClass {
     private String townpanchayat_name;
     private String municipality_name;
     private String corporation_name;
+    private String name_of_the_beneficiary;
+    private String gender;
+    private String house_sanctioned_order_no;
+    private String estimate_cost_required;
+    private String type;
+    private int repair_infra_estimate_id;
+
+
+    public String getType() {
+        return type;
+    }
+
+    public ModelClass setType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    public int getRepair_infra_estimate_id() {
+        return repair_infra_estimate_id;
+    }
+
+    public ModelClass setRepair_infra_estimate_id(int repair_infra_estimate_id) {
+        this.repair_infra_estimate_id = repair_infra_estimate_id;
+        return this;
+    }
+
+    public String getName_of_the_beneficiary() {
+        return name_of_the_beneficiary;
+    }
+
+    public ModelClass setName_of_the_beneficiary(String name_of_the_beneficiary) {
+        this.name_of_the_beneficiary = name_of_the_beneficiary;
+        return this;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public ModelClass setGender(String gender) {
+        this.gender = gender;
+        return this;
+    }
+
+    public String getHouse_sanctioned_order_no() {
+        return house_sanctioned_order_no;
+    }
+
+    public ModelClass setHouse_sanctioned_order_no(String house_sanctioned_order_no) {
+        this.house_sanctioned_order_no = house_sanctioned_order_no;
+        return this;
+    }
+
+    public String getEstimate_cost_required() {
+        return estimate_cost_required;
+    }
+
+    public ModelClass setEstimate_cost_required(String estimate_cost_required) {
+        this.estimate_cost_required = estimate_cost_required;
+        return this;
+    }
+
+    public String getLongtitude() {
+        return Longtitude;
+    }
+
+    public ModelClass setLongtitude(String longtitude) {
+        Longtitude = longtitude;
+        return this;
+    }
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public ModelClass setImage_path(String image_path) {
+        this.image_path = image_path;
+        return this;
+    }
+
+    public int getImage_serial_number() {
+        return image_serial_number;
+    }
+
+    public ModelClass setImage_serial_number(int image_serial_number) {
+        this.image_serial_number = image_serial_number;
+        return this;
+    }
 
     public int getLocalbody_area_type() {
         return localbody_area_type;
@@ -347,11 +440,11 @@ public class ModelClass {
         return this;
     }
 
-    public String getScheme_disp_order() {
+    public int getScheme_disp_order() {
         return scheme_disp_order;
     }
 
-    public ModelClass setScheme_disp_order(String scheme_disp_order) {
+    public ModelClass setScheme_disp_order(int scheme_disp_order) {
         this.scheme_disp_order = scheme_disp_order;
         return this;
     }
@@ -491,11 +584,11 @@ public class ModelClass {
         return this;
     }
 
-    public String getImage() {
+    public Bitmap getImage() {
         return Image;
     }
 
-    public ModelClass setImage(String image) {
+    public ModelClass setImage(Bitmap image) {
         Image = image;
         return this;
     }

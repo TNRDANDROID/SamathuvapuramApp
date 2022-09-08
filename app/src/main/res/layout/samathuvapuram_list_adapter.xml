@@ -50,8 +50,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="District Name"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:text="District"
                                     />
                                 <TextView
                                     android:layout_width="0dp"
@@ -60,7 +60,7 @@
                                     android:gravity="center"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -71,8 +71,7 @@
                                     android:id="@+id/dname"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="name"
+                                    android:textSize="@dimen/_12sdp"
                                     />
 
 
@@ -90,8 +89,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="Block Name"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:text="Block"
                                     />
                                 <TextView
                                     android:layout_gravity="center"
@@ -100,7 +99,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -111,8 +110,7 @@
                                     android:layout_gravity="center"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="bname"
+                                    android:textSize="@dimen/_12sdp"
                                     />
 
 
@@ -130,8 +128,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="Village Name"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:text="Village"
                                     />
                                 <TextView
                                     android:layout_width="0dp"
@@ -140,7 +138,7 @@
                                     android:gravity="center"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -151,8 +149,7 @@
                                     android:gravity="start"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="pvname"
+                                    android:textSize="@dimen/_12sdp"
                                     />
 
                             </LinearLayout>
@@ -169,8 +166,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="Habitation Name"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:text="Habitation"
                                     />
                                 <TextView
                                     android:layout_width="0dp"
@@ -179,7 +176,7 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -190,8 +187,7 @@
                                     android:gravity="start"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="habitation_name"
+                                    android:textSize="@dimen/_12sdp"
                                     />
 
                             </LinearLayout>
@@ -208,8 +204,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="Town Panchayat Name"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:text="Town Panchayat"
                                     />
                                 <TextView
                                     android:layout_width="0dp"
@@ -218,7 +214,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -229,8 +225,7 @@
                                     android:gravity="start"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="townpanchayat_name"
+                                    android:textSize="@dimen/_12sdp"
                                     />
 
                             </LinearLayout>
@@ -247,8 +242,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="Municipality Name"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:text="Municipality"
                                     />
                                 <TextView
                                     android:layout_width="0dp"
@@ -257,7 +252,7 @@
                                     android:gravity="center"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -268,8 +263,7 @@
                                     android:gravity="start"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="municipality_name"
+                                    android:textSize="@dimen/_12sdp"
                                     />
 
                             </LinearLayout>
@@ -286,8 +280,8 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="Corporation Name"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:text="Corporation"
                                     />
                                 <TextView
                                     android:layout_width="0dp"
@@ -296,7 +290,7 @@
                                     android:gravity="center"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -307,9 +301,8 @@
                                     android:gravity="start"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="corporation_name"
-                                    />
+                                    android:textSize="@dimen/_12sdp"
+                                   />
 
                             </LinearLayout>
                             <LinearLayout
@@ -325,7 +318,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text="Year Of Construction"
                                     />
                                 <TextView
@@ -335,7 +328,7 @@
                                     android:gravity="center"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -346,8 +339,7 @@
                                     android:gravity="start"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="year_of_construction"
+                                    android:textSize="@dimen/_12sdp"
                                     />
 
                             </LinearLayout>
@@ -364,7 +356,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text="No Of House Constructed"
                                     />
                                 <TextView
@@ -374,7 +366,7 @@
                                     android:gravity="center"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:text=":"
                                     />
                                 <TextView
@@ -385,8 +377,7 @@
                                     android:gravity="start"
                                     android:layout_gravity="center"
                                     android:textColor="@color/grey_9"
-                                    android:textSize="@dimen/_14sdp"
-                                    android:text="no_of_houses_constructed"
+                                    android:textSize="@dimen/_12sdp"
                                     />
 
                             </LinearLayout>

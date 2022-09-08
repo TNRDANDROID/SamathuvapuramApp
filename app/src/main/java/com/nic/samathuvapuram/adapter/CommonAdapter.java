@@ -51,12 +51,22 @@ public class CommonAdapter extends BaseAdapter {
         TextView tv_type = (TextView) view.findViewById(R.id.spinner_list_value);
         ModelClass pmgsySurvey = pmgsySurveys.get(position);
 
-        if (type.equalsIgnoreCase("BlockList")) {
-            tv_type.setText(pmgsySurvey.getBlockName());
-        } else if (type.equalsIgnoreCase("VillageList")) {
-            tv_type.setText(pmgsySurvey.getPvName());
-        } else if (type.equalsIgnoreCase("HabitationList")) {
-            tv_type.setText(pmgsySurvey.getHabitationName());
+        if (type.equalsIgnoreCase("CommunityList")) {
+            tv_type.setText(pmgsySurvey.getCommunity_category());
+        } else if (type.equalsIgnoreCase("Current_house_usage")) {
+            tv_type.setText(pmgsySurvey.getCurrent_usage());
+        } else if (type.equalsIgnoreCase("Phototype")) {
+            tv_type.setText(pmgsySurvey.getPhoto_type_name());
+        }else if (type.equalsIgnoreCase("estimate_type_list")) {
+            tv_type.setText(pmgsySurvey.getEstimate_type_name());
+        }else if (type.equalsIgnoreCase("condition_of_house_list")) {
+            tv_type.setText(pmgsySurvey.getCondition_of_house());
+        }else if (type.equalsIgnoreCase("condition_of_infra_list")) {
+            tv_type.setText(pmgsySurvey.getCondition_of_infra());
+        }else if (type.equalsIgnoreCase("work_scheme_list")) {
+            tv_type.setText(pmgsySurvey.getScheme_name());
+        }else if (type.equalsIgnoreCase("work_type_list")) {
+            tv_type.setText(pmgsySurvey.getWork_name());
         }
         else {
             tv_type.setText("");

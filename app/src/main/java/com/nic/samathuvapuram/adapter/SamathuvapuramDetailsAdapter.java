@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nic.samathuvapuram.R;
+import com.nic.samathuvapuram.activity.AEScreen;
 import com.nic.samathuvapuram.activity.HouseListActivity;
 import com.nic.samathuvapuram.dataBase.dbData;
 import com.nic.samathuvapuram.databinding.SamathuvapuramListAdapterBinding;
@@ -19,13 +20,14 @@ import com.nic.samathuvapuram.session.PrefManager;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SamathuvapuramDetailsAdapter extends RecyclerView.Adapter<SamathuvapuramDetailsAdapter.MyViewHolder> {
 
     private static Activity context;
     private PrefManager prefManager;
-    private List<ModelClass> list;
+    private ArrayList<ModelClass> list;
     static JSONObject dataset = new JSONObject();
     private final com.nic.samathuvapuram.dataBase.dbData dbData;
     private LayoutInflater layoutInflater;
@@ -50,7 +52,7 @@ public class SamathuvapuramDetailsAdapter extends RecyclerView.Adapter<Samathuva
     private String municipality_name;
     private String corporation_name;
 
-    public SamathuvapuramDetailsAdapter(Activity context, List<ModelClass> listValues, dbData dbData) {
+    public SamathuvapuramDetailsAdapter(Activity context, ArrayList<ModelClass> listValues, dbData dbData) {
 
         this.context = context;
         prefManager = new PrefManager(context);
@@ -162,12 +164,19 @@ public class SamathuvapuramDetailsAdapter extends RecyclerView.Adapter<Samathuva
 
 
 
-        holder.binding.go.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, HouseListActivity.class);
-                intent.putExtra("samathuvapuram_id", list.get(position).getSamathuvapuram_id());
-                context.startActivity(intent);
+                if(prefManager.getUsertype().equals("bdo")){
+                    Intent intent = new Intent(context, HouseListActivity.class);
+                    intent.putExtra("samathuvapuram_id", list.get(position).getSamathuvapuram_id());
+                    context.startActivity(intent);
+                }else  if(prefManager.getUsertype().equals("ae")){
+                    Intent intent = new Intent(context, AEScreen.class);
+                    intent.putExtra("samathuvapuram_id", list.get(position).getSamathuvapuram_id());
+                    context.startActivity(intent);
+                }
+
 
             }
         });

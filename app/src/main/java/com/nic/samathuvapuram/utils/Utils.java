@@ -1288,6 +1288,12 @@ public class Utils {
         Log.d("samathuvapuram_details", "" + dataSet);
         return dataSet;
     }
+    public static JSONObject blk_ae_samathuvapuram_details_JsonParams() throws JSONException {
+        JSONObject dataSet = new JSONObject();
+        dataSet.put(AppConstant.KEY_SERVICE_ID, "blk_ae_samathuvapuram_details");
+        Log.d("samathuvapuram_details", "" + dataSet);
+        return dataSet;
+    }
 
 
     public static JSONObject current_house_usage_JsonParams() throws JSONException {

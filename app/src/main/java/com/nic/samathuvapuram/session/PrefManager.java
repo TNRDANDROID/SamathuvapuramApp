@@ -59,13 +59,81 @@ public class PrefManager {
     private static final String SCHEDULE_MASTER_ID = "schedule_master_id";
     private static final String KEY_DELETE_ID = "deleteId";
     private static final String KEY_DELETE_POSITION = "deletePosition";
-
-
+    private static final String KEY_SAMATHUVAPURAM_ID = "samathuvapuram_id";
+    private static final String KEY_HOUSE_SERIAL_NUMBER = "house_serial_number";
+    private static final String DELETE_ADAPTER_POSITION = "delete_adapter_position";
+    private static final String KEY_COMMUNITY_NAME = "Community_Name";
+    private static final String KEY_COMMUNITY_CODE = "Community_Code";
+    private static final String KEY_CURRRENT_USAGE_ID = "current_usage_id";
+    private static final String KEY_CURRRENT_USAGE = "current_usage";
+    private static final String KEY_PHOTO_TYPE = "photos_type";
+    private static final String KEY_USER_TYPE = "user_type";
+    private static final String KEY_scheme_group_id = "scheme_group_id";
+    private static final String KEY_scheme_id = "scheme_id";
+    private static final String KEY_work_group_id = "work_group_id";
+    private static final String KEY_work_type_id = "work_type_id";
 
     public PrefManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(AppConstant.PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
+    }
+
+    public Object setPhototype(Object key) {
+        editor.putString(KEY_PHOTO_TYPE, String.valueOf(key));
+        editor.commit();
+        return key;
+    }
+
+    public String getPhototype() {
+        return pref.getString(KEY_PHOTO_TYPE, null);
+    }
+
+    public Object setUsertype(Object key) {
+        editor.putString(KEY_USER_TYPE, String.valueOf(key));
+        editor.commit();
+        return key;
+    }
+
+    public String getUsertype() {
+        return pref.getString(KEY_USER_TYPE, null);
+    }
+
+    public Object setCurrentUsageID(Object key) {
+        editor.putString(KEY_CURRRENT_USAGE_ID, String.valueOf(key));
+        editor.commit();
+        return key;
+    }
+
+    public String getCurrentUsageID() {
+        return pref.getString(KEY_CURRRENT_USAGE_ID, null);
+    }
+    public Object setCurrentUsage(Object key) {
+        editor.putString(KEY_CURRRENT_USAGE, String.valueOf(key));
+        editor.commit();
+        return key;
+    }
+
+    public String getCurrentUsage() {
+        return pref.getString(KEY_CURRRENT_USAGE, null);
+    }
+    public Object setCommunityCode(Object key) {
+        editor.putString(KEY_COMMUNITY_CODE, String.valueOf(key));
+        editor.commit();
+        return key;
+    }
+
+    public String getCommunityCode() {
+        return pref.getString(KEY_COMMUNITY_CODE, null);
+    }
+    public Object setCommunityName(Object key) {
+        editor.putString(KEY_COMMUNITY_NAME, String.valueOf(key));
+        editor.commit();
+        return key;
+    }
+
+    public String getCommunityName() {
+        return pref.getString(KEY_COMMUNITY_NAME, null);
     }
 
     public Integer getScheduleMasterId() {
@@ -124,6 +192,70 @@ public class PrefManager {
         editor.putInt(KEY_DELETE_POSITION,deletePos);
         editor.commit();
     }
+
+    public Integer getSamathuvapuramId() {
+        return pref.getInt(KEY_SAMATHUVAPURAM_ID,0);
+    }
+
+    public void setSamathuvapuramId(Integer deletePos) {
+        editor.putInt(KEY_SAMATHUVAPURAM_ID,deletePos);
+        editor.commit();
+    }
+  public Integer getHouse_serial_number() {
+        return pref.getInt(KEY_HOUSE_SERIAL_NUMBER,0);
+    }
+
+    public void setHouse_serial_number(Integer deletePos) {
+        editor.putInt(KEY_HOUSE_SERIAL_NUMBER,deletePos);
+        editor.commit();
+    }
+
+   public Integer getscheme_group_id() {
+        return pref.getInt(KEY_scheme_group_id,0);
+    }
+
+    public void setscheme_group_id(Integer scheme_group_id) {
+        editor.putInt(KEY_scheme_group_id,scheme_group_id);
+        editor.commit();
+    }
+
+
+    public Integer getscheme_id() {
+        return pref.getInt(KEY_scheme_id,0);
+    }
+
+    public void setscheme_id(Integer scheme_id) {
+        editor.putInt(KEY_scheme_id,scheme_id);
+        editor.commit();
+    }
+
+    public Integer getwork_group_id() {
+        return pref.getInt(KEY_work_group_id,0);
+    }
+
+    public void setwork_group_id(Integer work_group_id) {
+        editor.putInt(KEY_work_group_id,work_group_id);
+        editor.commit();
+    }
+
+    public Integer getwork_type_id() {
+        return pref.getInt(KEY_work_type_id,0);
+    }
+
+    public void setwork_type_id(Integer work_type_id) {
+        editor.putInt(KEY_work_type_id,work_type_id);
+        editor.commit();
+    }
+
+    public void setDeleteAdapterPosition(Integer LocationId) {
+        editor.putInt(DELETE_ADAPTER_POSITION,LocationId);
+        editor.commit();
+    }
+
+    public Integer getDeleteAdapterPosition() {
+        return pref.getInt(DELETE_ADAPTER_POSITION,0);
+    }
+
 
     public String getUserAuthKey() {
         return pref.getString(KEY_USER_AUTH_KEY, null);

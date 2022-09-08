@@ -76,6 +76,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged|adjustPan" />
         <activity android:name=".activity.HouseListActivity" />
+        <activity android:name=".activity.CameraScreen" />
+        <activity android:name=".activity.FullImageActivity" />
+        <activity android:name=".activity.PendingScreen" />
+        <activity android:name=".activity.SaveBlkHouseDetailsActivity" />
+        <activity android:name=".activity.SaveAeHouseDetailsActivity" />
+        <activity android:name=".activity.AEScreen" />
+        <activity android:name=".activity.InfraListActivity" />
+        <activity android:name=".activity.SaveAeInfraDetailsActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

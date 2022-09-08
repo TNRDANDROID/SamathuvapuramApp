@@ -9,7 +9,8 @@
     <string name="font_circular_black">circular-black.ttf</string>
     <string name="font_normal">din_pro_light.otf</string>
     <string name="no_internet">உங்கள் இணையம் ஆஃப்லைனில் இருப்பது போல் தெரிகிறது!</string>
-    <string name="view_image">பரிசோதிக்கப்பட்ட படத்தைப் பார்க்கவும்</string>
+    <string name="view_image"><u>படத்தைப் பார்க்கவும்</u></string>
+    <string name="minimum_three_photos">Minimum Photo not reached</string>
     <string name="take_action">நடவடிக்கை எடு</string>
     <string name="view_action">செயலைக் காண்க</string>
     <string name="action_taken_tv" tools:ignore="ExtraTranslation">உயர் மதிப்பு திட்டத்திற்கான ஆய்வு அறிக்கைக்கு எதிராக நடவடிக்கை எடுக்கப்பட்டது</string>

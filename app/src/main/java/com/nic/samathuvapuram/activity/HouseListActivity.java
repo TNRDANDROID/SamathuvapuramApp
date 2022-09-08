@@ -149,7 +149,12 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
     }
     public  JSONObject house_list_JsonParams() throws JSONException {
         JSONObject dataSet = new JSONObject();
-        dataSet.put(AppConstant.KEY_SERVICE_ID, "blk_bdo_samathuvapuram_list_of_houses");
+        if(prefManager.getUsertype().equals("ae")){
+            dataSet.put(AppConstant.KEY_SERVICE_ID, "blk_ae_samathuvapuram_list_of_houses");
+        }else if(prefManager.getUsertype().equals("bdo")){
+            dataSet.put(AppConstant.KEY_SERVICE_ID, "blk_bdo_samathuvapuram_list_of_houses");
+        }
+
         dataSet.put("samathuvapuram_id", samathuvapuram_id);
         Log.d("house_list", "" + dataSet);
         return dataSet;
@@ -162,6 +167,14 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
         overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(Utils.isOnline()){
+            house_list();
+        }
+    }
 
 
     @Override
@@ -186,7 +199,9 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_house_list().execute(jsonObject);
                 }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
-                    Utils.showAlert(this,"No Record Found!");
+//                    Utils.showAlert(this,"No Record Found!");
+                    houseListScreenBinding.recycler.setVisibility(View.GONE);
+                    houseListScreenBinding.notFoundTv.setVisibility(View.VISIBLE);
                 }
                 Log.d("Insert_house_list", "" + jsonObject);
             }
@@ -218,16 +233,72 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
 
                         ModelClass ListValue = new ModelClass();
                         try {
-                            ListValue.setCurrent_beneficiary_id(jsonArray.getJSONObject(i).getInt("current_beneficiary_id"));
-                            ListValue.setSamathuvapuram_id(jsonArray.getJSONObject(i).getInt("samathuvapuram_id"));
-                            ListValue.setHouse_serial_number(jsonArray.getJSONObject(i).getInt("house_serial_number"));
-                            ListValue.setIs_house_owned_by_sanctioned_beneficiary(jsonArray.getJSONObject(i).getString("is_house_owned_by_sanctioned_beneficiary"));
-                            ListValue.setCurrent_house_usage(jsonArray.getJSONObject(i).getString("current_house_usage"));
-                            ListValue.setCurrent_name_of_the_beneficiary(jsonArray.getJSONObject(i).getString("current_name_of_the_beneficiary"));
-                            ListValue.setCurrent_gender(jsonArray.getJSONObject(i).getString("current_gender"));
-                            ListValue.setCurrent_community_category_id(jsonArray.getJSONObject(i).getString("current_community_category_id"));
-                            ListValue.setCurrent_usage(jsonArray.getJSONObject(i).getString("current_usage"));
-                            ListValue.setIs_beneficiary_detail_required(jsonArray.getJSONObject(i).getString("is_beneficiary_detail_required"));
+                           if(prefManager.getUsertype().equals("bdo")){
+                               ListValue.setCurrent_beneficiary_id(jsonArray.getJSONObject(i).getInt("current_beneficiary_id"));
+                               ListValue.setSamathuvapuram_id(jsonArray.getJSONObject(i).getInt("samathuvapuram_id"));
+                               ListValue.setHouse_serial_number(jsonArray.getJSONObject(i).getInt("house_serial_number"));
+                               ListValue.setIs_house_owned_by_sanctioned_beneficiary(jsonArray.getJSONObject(i).getString("is_house_owned_by_sanctioned_beneficiary"));
+                               ListValue.setCurrent_house_usage(jsonArray.getJSONObject(i).getString("current_house_usage"));
+                               ListValue.setCurrent_name_of_the_beneficiary(jsonArray.getJSONObject(i).getString("current_name_of_the_beneficiary"));
+                               ListValue.setCurrent_gender(jsonArray.getJSONObject(i).getString("current_gender"));
+                               ListValue.setCurrent_community_category_id(jsonArray.getJSONObject(i).getString("current_community_category_id"));
+                               ListValue.setCurrent_usage(jsonArray.getJSONObject(i).getString("current_usage"));
+                               ListValue.setIs_beneficiary_detail_required(jsonArray.getJSONObject(i).getString("is_beneficiary_detail_required"));
+
+                           }else if(prefManager.getUsertype().equals("ae")){
+                               int community_category_id=0;
+                               int condition_of_house_id=0;
+                               int scheme_group_id=0;
+                               int scheme_id=0;
+                               int work_group_id=0;
+                               int work_type_id=0;
+                               ListValue.setSamathuvapuram_id(jsonArray.getJSONObject(i).getInt("samathuvapuram_id"));
+                               ListValue.setHouse_serial_number(jsonArray.getJSONObject(i).getInt("house_serial_number"));
+                               ListValue.setName_of_the_beneficiary(jsonArray.getJSONObject(i).getString("name_of_the_beneficiary"));
+                               ListValue.setGender(jsonArray.getJSONObject(i).getString("gender"));
+                               if(jsonArray.getJSONObject(i).getString("community_category_id").equals("")){
+                                   community_category_id=0;
+                               }else {
+                                   community_category_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("community_category_id"));
+                               }
+                               if(jsonArray.getJSONObject(i).getString("condition_of_house_id").equals("")){
+                                   condition_of_house_id=0;
+                               }else {
+                                   condition_of_house_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("condition_of_house_id"));
+                               }
+                               if(jsonArray.getJSONObject(i).getString("scheme_group_id").equals("")){
+                                   scheme_group_id=0;
+                               }else {
+                                   scheme_group_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("scheme_group_id"));
+                               }
+                               if(jsonArray.getJSONObject(i).getString("scheme_id").equals("")){
+                                   scheme_id=0;
+                               }else {
+                                   scheme_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("scheme_id"));
+                               }
+                               if(jsonArray.getJSONObject(i).getString("work_group_id").equals("")){
+                                   work_group_id=0;
+                               }else {
+                                   work_group_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("work_group_id"));
+                               }
+                               if(jsonArray.getJSONObject(i).getString("work_type_id").equals("")){
+                                   work_type_id=0;
+                               }else {
+                                   work_type_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("work_type_id"));
+                               }
+                               ListValue.setCommunity_category_id(community_category_id);
+                               ListValue.setHouse_sanctioned_order_no(jsonArray.getJSONObject(i).getString("house_sanctioned_order_no"));
+                               ListValue.setCondition_of_house_id(condition_of_house_id);
+                               ListValue.setScheme_group_id(scheme_group_id);
+                               ListValue.setScheme_id(scheme_id);
+                               ListValue.setWork_group_id(work_group_id);
+                               ListValue.setWork_type_id(work_type_id);
+                               ListValue.setEstimate_cost_required(jsonArray.getJSONObject(i).getString("estimate_cost_required"));
+                               ListValue.setCondition_of_house(jsonArray.getJSONObject(i).getString("condition_of_house"));
+
+                           }
+
+
                             dbData.Insert_house_list(ListValue);
                         } catch (JSONException e) {
                             e.printStackTrace();

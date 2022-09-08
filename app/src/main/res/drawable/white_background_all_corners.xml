@@ -6,10 +6,10 @@
     <item>
         <shape>
             <corners
-                android:bottomLeftRadius="10dp"
-                android:bottomRightRadius="0dp"
-                android:topLeftRadius="10dp"
-                android:topRightRadius="0dp" />
+                android:bottomLeftRadius="@dimen/_19sdp"
+                android:bottomRightRadius="@dimen/_19sdp"
+                android:topLeftRadius="@dimen/_19sdp"
+                android:topRightRadius="@dimen/_19sdp" />
             <solid android:color="@color/full_transparent" />
         </shape>
     </item>
@@ -20,10 +20,10 @@
         android:top="2dp">
         <shape>
             <corners
-                android:bottomLeftRadius="10dp"
-                android:bottomRightRadius="0dp"
-                android:topLeftRadius="10dp"
-                android:topRightRadius="0dp" />
+                android:bottomLeftRadius="@dimen/_19sdp"
+                android:bottomRightRadius="@dimen/_19sdp"
+                android:topLeftRadius="@dimen/_19sdp"
+                android:topRightRadius="@dimen/_19sdp" />
             <solid android:color="@color/white" />
         </shape>
     </item>
