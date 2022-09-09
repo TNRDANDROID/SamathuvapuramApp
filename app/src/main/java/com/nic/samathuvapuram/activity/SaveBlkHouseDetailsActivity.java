@@ -57,6 +57,7 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
     int photo_type_id;
     int min_img_count;
     int max_img_count;
+    int selectCommunity=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
         int current_community_category_id= getIntent().getIntExtra("current_community_category_id",0);
         int current_house_usage_id_value= getIntent().getIntExtra("current_house_usage",0);
         String current_gender= getIntent().getStringExtra("current_gender");
+        String current_usage= getIntent().getStringExtra("current_usage");
 
 
         communityFilterSpinner();
@@ -86,6 +88,29 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
         saveHouseDetailosActivityBinding.currentHouseUsageTv.setVisibility(View.GONE);
         saveHouseDetailosActivityBinding.currentHouseUsageLayout.setVisibility(View.GONE);
 
+        if(current_name_of_the_beneficiary!=null && !current_name_of_the_beneficiary.equals("")){
+            saveHouseDetailosActivityBinding.benificiaryName.setText(current_name_of_the_beneficiary);
+        }else {
+            saveHouseDetailosActivityBinding.benificiaryName.setText("");
+        }
+
+
+      /*  if(is_house_owned_by_sanctioned_beneficiary!=null && !is_house_owned_by_sanctioned_beneficiary.equals("") && is_house_owned_by_sanctioned_beneficiary.equals("Y")){
+            isBeneficiary = "Y";
+            saveHouseDetailosActivityBinding.beneficiaryYes.setChecked(true);
+            saveHouseDetailosActivityBinding.beneficiaryNo.setChecked(false);
+            saveHouseDetailosActivityBinding.currentHouseUsageTv.setVisibility(View.GONE);
+            saveHouseDetailosActivityBinding.currentHouseUsageLayout.setVisibility(View.GONE);
+            saveHouseDetailosActivityBinding.currentHouseUsageSpinner.setSelection(0);
+        } else if(is_house_owned_by_sanctioned_beneficiary!=null && !is_house_owned_by_sanctioned_beneficiary.equals("") && is_house_owned_by_sanctioned_beneficiary.equals("N")){
+
+            isBeneficiary = "N";
+            saveHouseDetailosActivityBinding.beneficiaryYes.setChecked(false);
+            saveHouseDetailosActivityBinding.beneficiaryNo.setChecked(true);
+            saveHouseDetailosActivityBinding.currentHouseUsageTv.setVisibility(View.VISIBLE);
+            saveHouseDetailosActivityBinding.currentHouseUsageLayout.setVisibility(View.VISIBLE);
+            saveHouseDetailosActivityBinding.currentHouseUsageSpinner.setSelection(0);
+        }*/
         
         saveHouseDetailosActivityBinding.communitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -213,6 +238,38 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
             }
         });
 
+      /*  if(current_house_usage_id_value > 0){
+
+            for(int i=0; i<Current_house_usage.size();i++){
+                if(Current_house_usage.get(i).getCurrent_usage_id() == current_house_usage_id_value){
+                    saveHouseDetailosActivityBinding.currentHouseUsageSpinner.setSelection(i);
+                }else {
+                    saveHouseDetailosActivityBinding.currentHouseUsageSpinner.setSelection(0);
+                }
+            }
+
+            prefManager.setCurrentUsageID(current_house_usage_id_value);
+            current_house_usage_id=current_house_usage_id_value;
+            current_house_usage=current_usage;
+        }else {
+            prefManager.setCurrentUsageID("");
+            current_house_usage="";
+            current_house_usage_id=0;
+        }
+        if(current_community_category_id > 0){
+
+            for(int i=0; i<Community.size();i++){
+                if(Community.get(i).getCommunity_category_id() == current_community_category_id){
+                    selectCommunity = i;
+                }else {
+                }
+            }
+            prefManager.setCommunityCode(current_community_category_id);
+        }else {
+            prefManager.setCommunityCode("");
+        }
+
+        saveHouseDetailosActivityBinding.communitySpinner.setSelection(selectCommunity);*/
     }
 
     public void communityFilterSpinner() {

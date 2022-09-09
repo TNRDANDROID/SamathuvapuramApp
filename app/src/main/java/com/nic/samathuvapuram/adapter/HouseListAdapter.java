@@ -102,9 +102,10 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.MyVi
                     intent.putExtra("house_serial_number",list.get(position).getHouse_serial_number());
                     intent.putExtra("current_name_of_the_beneficiary",list.get(position).getCurrent_name_of_the_beneficiary());
                     intent.putExtra("is_house_owned_by_sanctioned_beneficiary",list.get(position).getIs_house_owned_by_sanctioned_beneficiary());
-                    intent.putExtra("current_community_category_id",list.get(position).getCurrent_community_category_id());
-                    intent.putExtra("current_house_usage",list.get(position).getCurrent_house_usage());
+                    intent.putExtra("current_community_category_id",Integer.parseInt(list.get(position).getCurrent_community_category_id()));
+                    intent.putExtra("current_house_usage",Integer.parseInt(list.get(position).getCurrent_house_usage()));
                     intent.putExtra("current_gender",list.get(position).getCurrent_gender());
+                    intent.putExtra("current_usage",list.get(position).getCurrent_usage());
                     context.startActivity(intent);
                 }else if(prefManager.getUsertype().equals("ae")){
                     Intent intent = new Intent(context, SaveAeHouseDetailsActivity.class);
