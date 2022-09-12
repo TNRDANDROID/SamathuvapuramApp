@@ -256,12 +256,54 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
                                ListValue.setHouse_serial_number(jsonArray.getJSONObject(i).getInt("house_serial_number"));
                                ListValue.setName_of_the_beneficiary(jsonArray.getJSONObject(i).getString("name_of_the_beneficiary"));
                                ListValue.setGender(jsonArray.getJSONObject(i).getString("gender"));
-                               if(jsonArray.getJSONObject(i).getString("community_category_id").equals("")){
+
+                               try {
+                                   community_category_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("community_category_id"));
+                               }catch (NumberFormatException e){
+                                   community_category_id=0;
+                                   e.printStackTrace();
+                               }
+                               try {
+                                   condition_of_house_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("condition_of_house_id"));
+                               }catch (NumberFormatException e){
+                                   condition_of_house_id=0;
+                                   e.printStackTrace();
+                               }
+                               try {
+                                   scheme_group_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("scheme_group_id"));
+                               }catch (NumberFormatException e){
+                                   scheme_group_id=0;
+                                   e.printStackTrace();
+                               }
+                               try {
+                                   scheme_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("scheme_id"));
+                               }catch (NumberFormatException e){
+                                   scheme_id=0;
+                                   e.printStackTrace();
+                               }
+                               try {
+                                   work_group_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("work_group_id"));
+                               }catch (NumberFormatException e){
+                                   work_group_id=0;
+                                   e.printStackTrace();
+                               }
+
+                               try {
+                                   work_type_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("work_type_id"));
+                               }catch (NumberFormatException e){
+                                   work_type_id=0;
+                                   e.printStackTrace();
+                               }
+
+                              /* if(jsonArray.getJSONObject(i).getString("community_category_id").equals("") &&
+                                       jsonArray.getJSONObject(i).getString("community_category_id").isEmpty()&&
+                                       jsonArray.getJSONObject(i).getString("community_category_id") == null){
                                    community_category_id=0;
                                }else {
                                    community_category_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("community_category_id"));
                                }
-                               if(jsonArray.getJSONObject(i).getString("condition_of_house_id").equals("")){
+                               if(jsonArray.getJSONObject(i).getString("condition_of_house_id").equals("") &&
+                                       jsonArray.getJSONObject(i).getString("condition_of_house_id").isEmpty()){
                                    condition_of_house_id=0;
                                }else {
                                    condition_of_house_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("condition_of_house_id"));
@@ -285,7 +327,10 @@ public class HouseListActivity extends AppCompatActivity implements Api.ServerRe
                                    work_type_id=0;
                                }else {
                                    work_type_id=Integer.parseInt(jsonArray.getJSONObject(i).getString("work_type_id"));
-                               }
+                               }*/
+
+
+
                                ListValue.setCommunity_category_id(community_category_id);
                                ListValue.setHouse_sanctioned_order_no(jsonArray.getJSONObject(i).getString("house_sanctioned_order_no"));
                                ListValue.setCondition_of_house_id(condition_of_house_id);
