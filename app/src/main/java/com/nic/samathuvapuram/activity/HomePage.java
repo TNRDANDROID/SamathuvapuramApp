@@ -84,8 +84,6 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
         homeScreenBinding.recycler.setFocusable(false);
 
         homeScreenBinding.synData.setVisibility(View.GONE);
-        homeScreenBinding.recycler.setVisibility(View.GONE);
-        homeScreenBinding.notFoundTv.setVisibility(View.VISIBLE);
         //fetAllApi();
         /*//Sample
         JSONObject jsonObject = new JSONObject();
@@ -406,7 +404,9 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
     protected void onResume() {
         super.onResume();
         syncButtonVisibility();
-        accessController();
+        if(Utils.isOnline()){
+            blk_bdo_samathuvapuram_details();
+        }
     }
 
 
@@ -423,6 +423,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_menu_access_control().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("menu_access_control", "" + jsonObject);
             }
@@ -454,6 +456,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_current_house_usage().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("current_house_usage", "" + jsonObject);
             }
@@ -463,6 +467,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_community().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("community", "" + jsonObject);
             }
@@ -472,6 +478,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_photos_type().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("photos_type", "" + jsonObject);
 
@@ -482,6 +490,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_condition_of_house().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("condition_of_house", "" + jsonObject);
 
@@ -492,6 +502,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_condition_of_infra().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("condition_of_infra", "" + jsonObject);
 
@@ -502,6 +514,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_estimate_type().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("estimate_type", "" + jsonObject);
 
@@ -512,6 +526,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_work_scheme().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("work_scheme", "" + jsonObject);
             }
@@ -521,6 +537,8 @@ public class HomePage extends AppCompatActivity implements Api.ServerResponseLis
                 JSONObject jsonObject = new JSONObject(responseDecryptedBlockKey);
                 if (jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("OK")) {
                     new Insert_work_type().execute(jsonObject);
+                }else if(jsonObject.getString("STATUS").equalsIgnoreCase("OK") && jsonObject.getString("RESPONSE").equalsIgnoreCase("NO_RECORD") && jsonObject.getString("MESSAGE").equalsIgnoreCase("NO_RECORD")){
+                    Utils.showAlert(this,"No Record Found!");
                 }
                 Log.d("work_type", "" + jsonObject);
             }

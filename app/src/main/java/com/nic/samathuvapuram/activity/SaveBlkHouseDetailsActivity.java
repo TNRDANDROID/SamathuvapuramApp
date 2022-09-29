@@ -58,7 +58,6 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
     int min_img_count;
     int max_img_count;
     int selectCommunity=0;
-    int current_community_category_id =0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,7 +76,7 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
         house_serial_number= getIntent().getIntExtra("house_serial_number",0);
         String current_name_of_the_beneficiary= getIntent().getStringExtra("current_name_of_the_beneficiary");
         String is_house_owned_by_sanctioned_beneficiary= getIntent().getStringExtra("is_house_owned_by_sanctioned_beneficiary");
-        current_community_category_id= getIntent().getIntExtra("current_community_category_id",0);
+        int current_community_category_id= getIntent().getIntExtra("current_community_category_id",0);
         int current_house_usage_id_value= getIntent().getIntExtra("current_house_usage",0);
         String current_gender= getIntent().getStringExtra("current_gender");
         String current_usage= getIntent().getStringExtra("current_usage");
@@ -96,7 +95,7 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
         }
 
 
-        if(is_house_owned_by_sanctioned_beneficiary!=null && !is_house_owned_by_sanctioned_beneficiary.equals("") && is_house_owned_by_sanctioned_beneficiary.equals("Y")){
+      /*  if(is_house_owned_by_sanctioned_beneficiary!=null && !is_house_owned_by_sanctioned_beneficiary.equals("") && is_house_owned_by_sanctioned_beneficiary.equals("Y")){
             isBeneficiary = "Y";
             saveHouseDetailosActivityBinding.beneficiaryYes.setChecked(true);
             saveHouseDetailosActivityBinding.beneficiaryNo.setChecked(false);
@@ -111,8 +110,8 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
             saveHouseDetailosActivityBinding.currentHouseUsageTv.setVisibility(View.VISIBLE);
             saveHouseDetailosActivityBinding.currentHouseUsageLayout.setVisibility(View.VISIBLE);
             saveHouseDetailosActivityBinding.currentHouseUsageSpinner.setSelection(0);
-        }
-
+        }*/
+        
         saveHouseDetailosActivityBinding.communitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -201,7 +200,7 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
-                    isGender="T";
+                    isGender="F";
                     saveHouseDetailosActivityBinding.radioGroup.clearCheck();
                     saveHouseDetailosActivityBinding.radioT.setEnabled(true);
                     saveHouseDetailosActivityBinding.radioT.setChecked(true);
@@ -239,30 +238,16 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
             }
         });
 
-        if(current_gender.equals("F")){
-            isGender="F";
-            saveHouseDetailosActivityBinding.radioGroup.clearCheck();
-            saveHouseDetailosActivityBinding.radioF.setEnabled(true);
-            saveHouseDetailosActivityBinding.radioF.setChecked(true);
-            saveHouseDetailosActivityBinding.radioM.setChecked(false);
-            saveHouseDetailosActivityBinding.radioT.setChecked(false);
-        }else if(current_gender.equals("M")){
-            isGender="M";
-            saveHouseDetailosActivityBinding.radioGroup.clearCheck();
-            saveHouseDetailosActivityBinding.radioM.setEnabled(true);
-            saveHouseDetailosActivityBinding.radioM.setChecked(true);
-            saveHouseDetailosActivityBinding.radioF.setChecked(false);
-            saveHouseDetailosActivityBinding.radioT.setChecked(false);
-        }else if(current_gender.equals("T")){
-            isGender="T";
-            saveHouseDetailosActivityBinding.radioGroup.clearCheck();
-            saveHouseDetailosActivityBinding.radioT.setEnabled(true);
-            saveHouseDetailosActivityBinding.radioT.setChecked(true);
-            saveHouseDetailosActivityBinding.radioM.setChecked(false);
-            saveHouseDetailosActivityBinding.radioF.setChecked(false);
-        }
+      /*  if(current_house_usage_id_value > 0){
 
-        if(current_house_usage_id_value > 0){
+            for(int i=0; i<Current_house_usage.size();i++){
+                if(Current_house_usage.get(i).getCurrent_usage_id() == current_house_usage_id_value){
+                    saveHouseDetailosActivityBinding.currentHouseUsageSpinner.setSelection(i);
+                }else {
+                    saveHouseDetailosActivityBinding.currentHouseUsageSpinner.setSelection(0);
+                }
+            }
+
             prefManager.setCurrentUsageID(current_house_usage_id_value);
             current_house_usage_id=current_house_usage_id_value;
             current_house_usage=current_usage;
@@ -271,45 +256,20 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
             current_house_usage="";
             current_house_usage_id=0;
         }
-
         if(current_community_category_id > 0){
+
+            for(int i=0; i<Community.size();i++){
+                if(Community.get(i).getCommunity_category_id() == current_community_category_id){
+                    selectCommunity = i;
+                }else {
+                }
+            }
             prefManager.setCommunityCode(current_community_category_id);
         }else {
-
-        }prefManager.setCommunityCode("");
-
-        saveHouseDetailosActivityBinding.communitySpinner.setSelection(getSpinnerIndex(current_community_category_id));
-        saveHouseDetailosActivityBinding.currentHouseUsageSpinner.setSelection(gethouse_usageSpinnerIndex(current_house_usage_id_value));
-    }
-    private int getSpinnerIndex(int myString){
-        int index = 0;
-        try {
-
-            for (int i=0;i<Community.size();i++){
-                if (Community.get(i).getCommunity_category_id()== (myString)){
-                    index = i;
-                }
-            }
-        }catch (NumberFormatException e){
-            e.printStackTrace();
+            prefManager.setCommunityCode("");
         }
-        return index;
 
-    }
-    private int gethouse_usageSpinnerIndex(int myString){
-        int index = 0;
-        try {
-
-            for (int i=0;i<Current_house_usage.size();i++){
-                if (Current_house_usage.get(i).getCurrent_usage_id()== (myString)){
-                    index = i;
-                }
-            }
-        }catch (NumberFormatException e){
-            e.printStackTrace();
-        }
-        return index;
-
+        saveHouseDetailosActivityBinding.communitySpinner.setSelection(selectCommunity);*/
     }
 
     public void communityFilterSpinner() {
@@ -324,10 +284,10 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
             if (cursor.moveToFirst()) {
                 do {
                     ModelClass modelClass = new ModelClass();
-                    int community_id = cursor.getInt(cursor.getColumnIndexOrThrow("community_category_id"));
+                    String community_id = cursor.getString(cursor.getColumnIndexOrThrow("community_category_id"));
                     String community_name = cursor.getString(cursor.getColumnIndexOrThrow("community_category"));
 
-                    modelClass.setCommunity_category_id(community_id);
+                    modelClass.setCurrent_community_category_id(community_id);
                     modelClass.setCommunity_category(community_name);
 
                     Community.add(modelClass);
@@ -407,12 +367,11 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
         dbData.open();
         ArrayList<ModelClass> ImageCount = dbData.getParticularSavedHouseImage(String.valueOf(samathuvapuram_id),String.valueOf(house_serial_number));
 
-       /* if (ImageCount.size() < 1) {
+        if (ImageCount.size() < 1) {
             validate();
         }else {
             Utils.showAlert(this,"Already photo saved for this house");
-        }*/
-        validate();
+        }
 
 
     }
@@ -496,7 +455,7 @@ public class SaveBlkHouseDetailsActivity extends AppCompatActivity implements Ap
 
         }
     }
-
+    
 
     @Override
     public void OnMyResponse(ServerResponse serverResponse) {
