@@ -692,6 +692,15 @@ public class ModelClass {
     private String current_name_of_the_beneficiary;
     private String current_gender;
     private String current_community_category_id;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getCurrent_beneficiary_id() {
         return current_beneficiary_id;

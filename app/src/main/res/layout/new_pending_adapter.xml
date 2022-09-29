@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginRight="@dimen/_5sdp">
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -28,19 +28,58 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
                 >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_70sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     tools:ignore="UselessParent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/linear"
+                        android:layout_below="@+id/view_offline_images"
                         android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="2"
+                            android:padding="@dimen/_3sdp"
+                            android:id="@+id/samathuvapuram_layout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/samathuvapuram_h"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:text="Samathuvapuram id"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:text=":"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/samathuvapuram_id"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                />
+
+
+                        </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:weightSum="2"
@@ -54,7 +93,7 @@
                                 android:id="@+id/house_serial_number_h"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text="House Sl.No"
                                 />
                             <TextView
@@ -63,7 +102,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text=":"
                                 />
                             <TextView
@@ -73,7 +112,7 @@
                                 android:id="@+id/house_serial_number"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 />
 
 
@@ -91,7 +130,7 @@
                                 android:id="@+id/scheme_h"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text="Scheme"
                                 />
                             <TextView
@@ -100,7 +139,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text=":"
                                 />
                             <TextView
@@ -110,7 +149,7 @@
                                 android:id="@+id/scheme"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 />
 
 
@@ -128,7 +167,7 @@
                                 android:id="@+id/work_h"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text="Work"
                                 />
                             <TextView
@@ -137,7 +176,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text=":"
                                 />
                             <TextView
@@ -147,7 +186,7 @@
                                 android:id="@+id/work"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 />
 
 
@@ -165,7 +204,7 @@
                                 android:id="@+id/current_name_of_the_beneficiary_h"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text="Beneficiary name"
                                 />
                             <TextView
@@ -174,7 +213,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text=":"
                                 />
                             <TextView
@@ -184,7 +223,7 @@
                                 android:id="@+id/current_name_of_the_beneficiary"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 />
 
 
@@ -202,7 +241,7 @@
                                 android:id="@+id/current_house_usage_h"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text="Current house usage"
                                 />
                             <TextView
@@ -211,7 +250,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text=":"
                                 />
                             <TextView
@@ -221,7 +260,7 @@
                                 android:id="@+id/current_house_usage"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 />
 
 
@@ -239,7 +278,7 @@
                                 android:id="@+id/condition_of_house_h"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text="Condition of house"
                                 />
                             <TextView
@@ -248,7 +287,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text=":"
                                 />
                             <TextView
@@ -258,7 +297,7 @@
                                 android:id="@+id/condition_of_house"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 />
 
 
@@ -276,7 +315,7 @@
                                 android:id="@+id/condition_of_infra_h"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text="Condition of infra"
                                 />
                             <TextView
@@ -285,7 +324,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:text=":"
                                 />
                             <TextView
@@ -295,7 +334,7 @@
                                 android:id="@+id/condition_of_infra"
                                 android:gravity="start"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 />
 
 
@@ -303,7 +342,7 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_below="@+id/linear"
                         android:id="@+id/land_delete_layout"
                         android:layout_width="match_parent"
@@ -317,6 +356,7 @@
                             android:padding="@dimen/_2sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/upload"
                             android:background="@drawable/button_bg_white"
                             android:id="@+id/delete">
                             <TextView
@@ -325,7 +365,7 @@
                                 android:textColor="@color/subscription_type_red_color"
                                 android:text="@string/delete"
                                 android:layout_centerHorizontal="true"
-                                android:textSize="@dimen/content_text_size"
+                                android:textSize="@dimen/_13sdp"
                                 android:textStyle="bold"
                                 android:paddingTop="@dimen/_1sdp"
                                 android:paddingBottom="@dimen/_2sdp"
@@ -335,8 +375,10 @@
 
                         <RelativeLayout
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
                             android:padding="@dimen/_2sdp"
+                            android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_bg_white"
@@ -348,27 +390,29 @@
                                 android:text="@string/upload"
                                 android:textStyle="bold"
                                 android:layout_centerHorizontal="true"
-                                android:textSize="@dimen/content_text_size"
+                                android:textSize="@dimen/_13sdp"
                                 android:paddingTop="@dimen/_1sdp"
                                 android:paddingBottom="@dimen/_2sdp"
                                 android:paddingLeft="@dimen/_8sdp"
                                 android:paddingRight="@dimen/_8sdp"/>
                         </RelativeLayout>
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/view_offline_images"
-                            android:gravity="end"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_14sdp"
-                            android:text="@string/view_image"
-                            android:textStyle="bold"
-                            android:layout_gravity="end"
-                            android:layout_marginRight="@dimen/_8sdp"
-                            />
 
-                    </LinearLayout>
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/view_offline_images"
+                        android:gravity="end"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="@string/view_image"
+                        android:textStyle="bold"
+                        android:layout_gravity="end"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        />
 
                 </RelativeLayout>
 
@@ -393,8 +437,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/ic_house"
+                android:id="@+id/img"
+                android:padding="@dimen/_8sdp"
+                android:src="@drawable/infrastructure"
                 tools:ignore="ContentDescription" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>

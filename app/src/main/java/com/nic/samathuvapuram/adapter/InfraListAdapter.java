@@ -84,8 +84,15 @@ public class InfraListAdapter extends RecyclerView.Adapter<InfraListAdapter.MyVi
             @Override
             public void onClick(View v) {
                     Intent intent = new Intent(context, SaveAeInfraDetailsActivity.class);
-                    intent.putExtra("samathuvapuram_id",samathuvapuram_id);
-                    intent.putExtra("repairInfraEstimateId",repairInfraEstimateId);
+                    intent.putExtra("samathuvapuram_id",list.get(position).getSamathuvapuram_id());
+                    intent.putExtra("repair_infra_estimate_id",list.get(position).getRepair_infra_estimate_id());
+                intent.putExtra("condition_of_infra_id", list.get(position).getCondition_of_infra_id());
+                intent.putExtra("scheme_group_id", list.get(position).getScheme_group_id());
+                intent.putExtra("scheme_id", list.get(position).getScheme_id());
+                intent.putExtra("work_group_id", list.get(position).getWork_group_id());
+                intent.putExtra("work_type_id", list.get(position).getWork_type_id());
+                intent.putExtra("estimate_cost_required", list.get(position).getEstimate_cost_required());
+                intent.putExtra("condition_of_infra", list.get(position).getCondition_of_infra());
                     context.startActivity(intent);
 
             }

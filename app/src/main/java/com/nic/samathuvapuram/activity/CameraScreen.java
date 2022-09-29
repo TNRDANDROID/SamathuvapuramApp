@@ -105,6 +105,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
     TextView latitude_text, longtitude_text;
     EditText myEditTextView;
     private List<View> viewArrayList = new ArrayList<>();
+    private List<ModelClass> viewList = new ArrayList<>();
 
     int samathuvapuram_id;
     int house_serial_number;
@@ -130,6 +131,10 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
     String Type="";
     String scheme="";
     String work="";
+    ArrayList<ModelClass> imageCount;
+    int clicked_position =0;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -144,7 +149,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        imageCount=new ArrayList<>();
         intializeUI();
 
         cameraScreenBinding.btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -204,9 +209,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         }
 
 
-
         viewArrayList.clear();
-        updateView(CameraScreen.this,cameraScreenBinding.cameraLayout,"","");
 
 
         mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -214,6 +217,28 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
 
         cameraScreenBinding.btnSaveLocal.setOnClickListener(this::onClick);
         cameraScreenBinding.imageCountTv.setText("You Can Capture up to "+max_img_count+" photos");
+
+        dbData.open();
+        if(Type.equals("INFRA")){
+            imageCount = dbData.getParticularSavedInfraImage(String.valueOf(samathuvapuram_id)
+                    ,String.valueOf(scheme_group_id) ,
+                    String.valueOf(scheme_id) ,
+                    String.valueOf(work_group_id) ,
+                    String.valueOf(work_type_id));
+
+        }else {
+            imageCount = dbData.getParticularSavedHouseImage(String.valueOf(samathuvapuram_id),
+                    String.valueOf(house_serial_number));
+        }
+        if(imageCount.size() > 0) {
+            for(int i=0;i<imageCount.size();i++){
+                updateView(CameraScreen.this,cameraScreenBinding.cameraLayout,imageCount.get(i).getImage_path(),"",imageCount.get(i).getLatitude(),imageCount.get(i).getLongtitude());
+            }
+        }
+        else {
+            updateView(CameraScreen.this,cameraScreenBinding.cameraLayout,"","","","");
+
+        }
 
     }
 
@@ -440,16 +465,26 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Bitmap photo= (Bitmap) data.getExtras().get("data");
-                    imageView.setImageBitmap(photo);
-                    image_view_preview.setVisibility(View.GONE);
-                    imageView.setVisibility(View.VISIBLE);
-                    latitude_text.setText(""+offlatTextValue);
-                    longtitude_text.setText(""+offlongTextValue);
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
 
-                    cameraScreenBinding.imageViewPreview.setVisibility(View.GONE);
-                    cameraScreenBinding.imageView.setVisibility(View.VISIBLE);
-                    cameraScreenBinding.imageView.setImageBitmap(photo);
+                    int childCount = cameraScreenBinding.cameraLayout.getChildCount();
+                    if (childCount > 0) {
+
+                            View vv = cameraScreenBinding.cameraLayout.getChildAt(clicked_position);
+                            imageView = vv.findViewById(R.id.image_view);
+                            myEditTextView = vv.findViewById(R.id.description);
+                            latitude_text = vv.findViewById(R.id.latitude);
+                            longtitude_text = vv.findViewById(R.id.longtitude);
+                        imageView.setImageBitmap(photo);
+                        image_view_preview.setVisibility(View.GONE);
+                        imageView.setVisibility(View.VISIBLE);
+                        latitude_text.setText("" + offlatTextValue);
+                        longtitude_text.setText("" + offlongTextValue);
+
+                        cameraScreenBinding.imageViewPreview.setVisibility(View.GONE);
+                        cameraScreenBinding.imageView.setVisibility(View.VISIBLE);
+                        cameraScreenBinding.imageView.setImageBitmap(photo);
+                    }
                 }
                 else {
                     // Refreshing the gallery
@@ -474,7 +509,27 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         else if(requestCode == 1213){
             String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
             Bitmap rotatedBitmap = BitmapFactory.decodeFile(filePath);
-            imageView.setImageBitmap(rotatedBitmap);
+
+            int childCount = cameraScreenBinding.cameraLayout.getChildCount();
+            if (childCount > 0) {
+
+                View vv = cameraScreenBinding.cameraLayout.getChildAt(clicked_position);
+                imageView = vv.findViewById(R.id.image_view);
+                myEditTextView = vv.findViewById(R.id.description);
+                latitude_text = vv.findViewById(R.id.latitude);
+                longtitude_text = vv.findViewById(R.id.longtitude);
+                imageView.setImageBitmap(rotatedBitmap);
+                image_view_preview.setVisibility(View.GONE);
+                imageView.setVisibility(View.VISIBLE);
+                latitude_text.setText("" + offlatTextValue);
+                longtitude_text.setText("" + offlongTextValue);
+
+                cameraScreenBinding.imageViewPreview.setVisibility(View.GONE);
+                cameraScreenBinding.imageView.setVisibility(View.VISIBLE);
+                cameraScreenBinding.imageView.setImageBitmap(rotatedBitmap);
+            }
+
+           /* imageView.setImageBitmap(rotatedBitmap);
             image_view_preview.setVisibility(View.GONE);
             imageView.setVisibility(View.VISIBLE);
             latitude_text.setText(""+offlatTextValue);
@@ -482,7 +537,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
 
             cameraScreenBinding.imageViewPreview.setVisibility(View.GONE);
             cameraScreenBinding.imageView.setVisibility(View.VISIBLE);
-            cameraScreenBinding.imageView.setImageBitmap(rotatedBitmap);
+            cameraScreenBinding.imageView.setImageBitmap(rotatedBitmap);*/
         }
         else if (requestCode == CAMERA_CAPTURE_VIDEO_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -543,6 +598,10 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
 
     public void saveImageButtonClick() {
         long house_primary_id = 0;
+        String whereCl = "";String[] whereAr = null;
+
+        long rowInsert = 0;
+        long rowUpdat = 0;
         try {
             Date c = Calendar.getInstance().getTime();
             System.out.println("Current time => " + c);
@@ -592,15 +651,33 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
+            if(Type.equals("INFRA")){
+                house_primary_id = db.insert(DBHelper.HOUSE_DETAILS, null, values);
+            }else {
+                dbData.open();
+                whereCl = "samathuvapuram_id = ? and house_serial_number = ?";
+                whereAr = new String[]{String.valueOf(samathuvapuram_id),String.valueOf(house_serial_number)};
 
-            house_primary_id = db.insert(DBHelper.HOUSE_DETAILS, null, values);
+                ArrayList<ModelClass> count = dbData.getAll_Particular_houseDetails(String.valueOf(samathuvapuram_id),String.valueOf(house_serial_number));
+
+                if (count.size() >0) {
+                    house_primary_id = db.update(DBHelper.HOUSE_DETAILS , values, whereCl, whereAr);
+
+                }else {
+                    house_primary_id = db.insert(DBHelper.HOUSE_DETAILS, null, values);
+                }
+            }
+
 
         } catch (Exception e) {
 
         }
         if (house_primary_id>0){
+            long id = 0; String whereClause = "";String[] whereArgs = null;
+
             JSONArray imageJson = new JSONArray();
             long rowInserted = 0;
+            long rowUpdated = 0;
             int childCount = cameraScreenBinding.cameraLayout.getChildCount();
             int count = 0;
             if (childCount > 0) {
@@ -650,14 +727,48 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
                         imageValue.put("longitude", longtitude_text.getText().toString());
                         imageValue.put("image_path", image_path);
                         imageValue.put("photo_type_id", photo_type_id);
+                        if(Type.equals("INFRA")){
+                           /* dbData.open();
+                            whereClause = "samathuvapuram_id = ? and scheme_group_id = ? and scheme_id = ? and work_group_id = ? and work_type_id = ?";
+                            whereArgs = new String[]{String.valueOf(samathuvapuram_id),String.valueOf(scheme_group_id),String.valueOf(scheme_id),String.valueOf(work_group_id),String.valueOf(work_type_id)};
+
+                            ArrayList<ModelClass> ImageCount = dbData.getParticularSavedInfraImage(String.valueOf(samathuvapuram_id),String.valueOf(scheme_group_id)
+                                    ,String.valueOf(scheme_id),String.valueOf(work_group_id),String.valueOf(work_type_id));
+
+                            if (ImageCount.size() >0) {
+                                rowInserted = db.insert(DBHelper.HOUSE_IMAGES_DETAILS, null, imageValue);
+
+                            }else {
+                                rowUpdated = db.update(DBHelper.HOUSE_IMAGES_DETAILS , imageValue, whereClause, whereArgs);
+                            }*/
+                            rowInserted = db.insert(DBHelper.HOUSE_IMAGES_DETAILS, null, imageValue);
+                        }else {
+                            dbData.open();
+                            whereClause = "samathuvapuram_id = ? and house_serial_number = ? and image_serial_number = ?";
+                            whereArgs = new String[]{String.valueOf(samathuvapuram_id),String.valueOf(house_serial_number),String.valueOf(count)};
+
+                            ArrayList<ModelClass> ImageCount = dbData.getParticularSavedHouseImageLocal(String.valueOf(samathuvapuram_id),String.valueOf(house_serial_number),String.valueOf(count));
+
+                            if (ImageCount.size() >0) {
+                                for(int j=0;  j<ImageCount.size() ;j++){
+                                    String filepath=ImageCount.get(j).getImage_path();
+                                    Utils.deleteFileDirectory(filepath);
+                                }
+                                rowUpdated = db.update(DBHelper.HOUSE_IMAGES_DETAILS , imageValue, whereClause, whereArgs);
+                            }else {
+                                rowInserted = db.insert(DBHelper.HOUSE_IMAGES_DETAILS, null, imageValue);
+
+                            }
+                        }
 
 
-                        rowInserted = db.insert(DBHelper.HOUSE_IMAGES_DETAILS, null, imageValue);
 
                         if (count == childCount) {
                             if (rowInserted > 0) {
 
-                                showToast();
+                                showToast(getResources().getString(R.string.inserted_success));
+                            }else if(rowUpdated > 0){
+                                showToast(getResources().getString(R.string.updated_success));
                             }
 
                         }
@@ -674,7 +785,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
     public void addImageButtonClick(){
         if(viewArrayList.size() < max_img_count) {
             if (imageView.getDrawable() != null && viewArrayList.size() > 0) {
-                updateView(CameraScreen.this, cameraScreenBinding.cameraLayout, "", "");
+                updateView(CameraScreen.this, cameraScreenBinding.cameraLayout, "", "", "", "");
             } else {
                 Utils.showAlert(CameraScreen.this, getResources().getString(R.string.please_capture_image));
             }
@@ -695,7 +806,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
     }
 
     //Method for update single view based on email or mobile type
-    public View updateView(final Activity activity, final LinearLayout emailOrMobileLayout, final String values, final String type) {
+    public View updateView(final Activity activity, final LinearLayout emailOrMobileLayout, final String values, final String type, final String latitude, final String longitude) {
         final View hiddenInfo = activity.getLayoutInflater().inflate(R.layout.image_with_description, emailOrMobileLayout, false);
         final ImageView imageView_close = (ImageView) hiddenInfo.findViewById(R.id.imageView_close);
         final LinearLayout description_layout = (LinearLayout) hiddenInfo.findViewById(R.id.description_layout);
@@ -705,11 +816,31 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         latitude_text = hiddenInfo.findViewById(R.id.latitude);
         longtitude_text = hiddenInfo.findViewById(R.id.longtitude);
         description_layout.setVisibility(View.GONE);
+
+//        imageView.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_phone_camera));
+        if(values!=null && !values.equals("") && !values.isEmpty()){
+
+            offlatTextValue= Double.valueOf(latitude);
+            offlongTextValue= Double.valueOf(longitude);
+            File imgFile = new File(values);
+            if(imgFile.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                imageView.setImageBitmap(myBitmap);
+                image_view_preview.setVisibility(View.GONE);
+                imageView.setVisibility(View.VISIBLE);
+                latitude_text.setText(""+offlatTextValue);
+                longtitude_text.setText(""+offlongTextValue);
+
+                cameraScreenBinding.imageViewPreview.setVisibility(View.GONE);
+                cameraScreenBinding.imageView.setVisibility(View.VISIBLE);
+                cameraScreenBinding.imageView.setImageBitmap(myBitmap);
+            }
+        }
         imageView_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    imageView.setVisibility(View.VISIBLE);
+//                    imageView.setVisibility(View.VISIBLE);
                     if (viewArrayList.size() != 1) {
                         ((LinearLayout) hiddenInfo.getParent()).removeView(hiddenInfo);
                         viewArrayList.remove(hiddenInfo);
@@ -723,6 +854,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         image_view_preview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clicked_position =emailOrMobileLayout.indexOfChild(hiddenInfo);
                 getLatLong();
 
             }
@@ -730,6 +862,7 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clicked_position =emailOrMobileLayout.indexOfChild(hiddenInfo);
                 getLatLong();
             }
         });
@@ -744,8 +877,8 @@ public class CameraScreen extends AppCompatActivity implements View.OnClickListe
     }
 
     @SuppressLint("CheckResult")
-    public void showToast(){
-        Toasty.success(CameraScreen.this,getResources().getString(R.string.inserted_success),Toast.LENGTH_SHORT,true).show();
+    public void showToast(String s){
+        Toasty.success(CameraScreen.this,s,Toast.LENGTH_SHORT,true).show();
        /* super.onBackPressed();
         overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit);*/
         homePage();

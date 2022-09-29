@@ -55,13 +55,14 @@ public class SaveAeHouseDetailsActivity extends AppCompatActivity implements Api
     String condition_of_house="0";
     String scheme="";
     String work="";
-    int scheme_group_id;
+    int scheme_group_id=0;
     int scheme_id=0;
     int work_group_id=0;
     int work_type_id=0;
     int photo_type_id=0;
     int min_img_count=0;
     int max_img_count=0;
+    int flag=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,10 +79,18 @@ public class SaveAeHouseDetailsActivity extends AppCompatActivity implements Api
         }
         samathuvapuram_id= getIntent().getIntExtra("samathuvapuram_id",0);
         house_serial_number= getIntent().getIntExtra("house_serial_number",0);
+        int condition_of_house_id_val= getIntent().getIntExtra("condition_of_house_id",0);
+        int scheme_group_id_val= getIntent().getIntExtra("scheme_group_id",0);
+        int scheme_id_val= getIntent().getIntExtra("scheme_id",0);
+        int work_group_id_val= getIntent().getIntExtra("work_group_id",0);
+        int work_type_id_val= getIntent().getIntExtra("work_type_id",0);
+        String estimate_cost_required= getIntent().getStringExtra("estimate_cost_required");
+        String condition_of_house_value= getIntent().getStringExtra("condition_of_house");
+
 
         condition_of_houseSpinner();
         work_schemeSpinner();
-//        work_typeSpinner();
+        work_typeSpinner();
         phototypeFilterSpinner();
 
         saveHouseDetailosActivityBinding.photosTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -126,6 +135,7 @@ public class SaveAeHouseDetailsActivity extends AppCompatActivity implements Api
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (position > 0) {
+                    flag=flag+1;
                     scheme_group_id=work_scheme_list.get(position).getScheme_group_id();
                     scheme_id=work_scheme_list.get(position).getScheme_id();
                     scheme=work_scheme_list.get(position).getScheme_name();
@@ -157,7 +167,108 @@ public class SaveAeHouseDetailsActivity extends AppCompatActivity implements Api
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }});
 
+
+        if(condition_of_house_id > 0){
+            condition_of_house_id=condition_of_house_id_val;
+            condition_of_house=condition_of_house_value;
+        }else {
+            condition_of_house_id=0;
+            condition_of_house="0";
+        }
+        if(estimate_cost_required != null && !estimate_cost_required .isEmpty() && !estimate_cost_required.equals("")){
+            saveHouseDetailosActivityBinding.estimateCostRequired.setText(estimate_cost_required);
+        }else {
+            saveHouseDetailosActivityBinding.estimateCostRequired.setText("");
+        }
+
+          if(scheme_group_id_val > 0 && scheme_id_val > 0){
+              scheme_group_id=scheme_group_id_val;
+              scheme_id=scheme_id_val;
+              scheme=getSchemeSpinnerName(scheme_group_id_val,scheme_id_val);
+              work_typeSpinner();
+        }else {
+              saveHouseDetailosActivityBinding.workTypeSpinner.setAdapter(null);
+              scheme_group_id=0;
+              scheme_id=0;
+              scheme="=";
+        }
+
+
+        saveHouseDetailosActivityBinding.conditionOfHouseSpinner.setSelection(getSpinnerIndex(condition_of_house_id_val));
+        saveHouseDetailosActivityBinding.workSchemeSpinner.setSelection(getSchemeSpinnerIndex(scheme_group_id_val,scheme_id_val));
+
+
+        if(scheme_group_id_val > 0 && scheme_id_val > 0 && work_group_id_val > 0 && work_type_id_val > 0){
+            work_group_id=work_group_id_val;
+            work_type_id=work_type_id_val;
+            work=getWorkTypeSpinnerName(scheme_group_id_val,scheme_id_val,work_group_id_val,work_type_id_val);
+        }else {
+            work_group_id=0;
+            work_type_id=0;
+            work="";
+        }
+
+
     }
+
+    private int getSpinnerIndex(int myString){
+        int index = 0;
+        try {
+            for (int i=0;i<condition_of_house_list.size();i++){
+                if (condition_of_house_list.get(i).getCondition_of_house_id()== (myString)){
+                    index = i;
+                }
+            }
+        }catch (NumberFormatException e){ e.printStackTrace(); }
+        return index;
+    }
+    private int getSchemeSpinnerIndex(int val1,int val2){
+        int index = 0;
+        try {
+            for (int i=0;i<work_scheme_list.size();i++){
+                if (work_scheme_list.get(i).getScheme_group_id()== (val1) && work_scheme_list.get(i).getScheme_id()== (val2)){
+                    index = i;
+                }
+            }
+        }catch (NumberFormatException e){ e.printStackTrace(); }
+        return index;
+    }
+    private int getWorkTypeSpinnerIndex(int val1,int val2,int val3,int val4){
+        int index = 0;
+        try {
+            for (int i=0;i<work_type_list.size();i++){
+                if (work_type_list.get(i).getScheme_group_id()== (val1) && work_type_list.get(i).getScheme_id()== (val2)
+                && work_type_list.get(i).getWork_group_id()== (val3) && work_type_list.get(i).getWork_type_id()== (val4)){
+                    index = i;
+                }
+            }
+        }catch (NumberFormatException e){ e.printStackTrace(); }
+        return index;
+    }
+    private String  getSchemeSpinnerName(int val1,int val2){
+        String index = "";
+        try {
+            for (int i=0;i<work_scheme_list.size();i++){
+                if (work_scheme_list.get(i).getScheme_group_id()== (val1) && work_scheme_list.get(i).getScheme_id()== (val2)){
+                    index = work_scheme_list.get(i).getScheme_name();
+                }
+            }
+        }catch (NumberFormatException e){ e.printStackTrace(); }
+        return index;
+    }
+    private String  getWorkTypeSpinnerName(int val1,int val2,int val3,int val4){
+        String index = "";
+        try {
+            for (int i=0;i<work_type_list.size();i++){
+                if (work_type_list.get(i).getScheme_group_id()== (val1) && work_type_list.get(i).getScheme_id()== (val2)
+                        && work_type_list.get(i).getWork_group_id()== (val3) && work_type_list.get(i).getWork_type_id()== (val4)){
+                    index = work_type_list.get(i).getWork_name();
+                }
+            }
+        }catch (NumberFormatException e){ e.printStackTrace(); }
+        return index;
+    }
+
 
     public void phototypeFilterSpinner() {
         Cursor cursor = null;
@@ -270,6 +381,7 @@ public class SaveAeHouseDetailsActivity extends AppCompatActivity implements Api
         work_type_list.clear();
         ModelClass list = new ModelClass();
         list.setWork_name("Select work type");
+        list.setWork_type_id(0);
         work_type_list.add(list);
         if (cursor.getCount() > 0) {
             if (cursor.moveToFirst()) {
@@ -301,17 +413,26 @@ public class SaveAeHouseDetailsActivity extends AppCompatActivity implements Api
 
         }
         saveHouseDetailosActivityBinding.workTypeSpinner.setAdapter(new CommonAdapter(this, work_type_list, "work_type_list"));
+
+      if(flag ==1){
+          saveHouseDetailosActivityBinding.workTypeSpinner.setSelection(getWorkTypeSpinnerIndex(scheme_group_id,scheme_id,work_group_id,work_type_id));
+
+      }else {
+          saveHouseDetailosActivityBinding.workTypeSpinner.setSelection(0);
+      }
+
     }
 
     public  void gotoCameraScreen(){
         dbData.open();
         ArrayList<ModelClass> ImageCount = dbData.getParticularSavedHouseImage(String.valueOf(samathuvapuram_id),String.valueOf(house_serial_number));
 
-        if (ImageCount.size() < 1) {
+        /*if (ImageCount.size() < 1) {
             validate();
         }else {
             Utils.showAlert(this,"Already photo saved for this house");
-        }
+        }*/
+        validate();
 
 
     }

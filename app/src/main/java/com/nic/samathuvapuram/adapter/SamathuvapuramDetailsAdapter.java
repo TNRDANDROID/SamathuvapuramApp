@@ -104,6 +104,7 @@ public class SamathuvapuramDetailsAdapter extends RecyclerView.Adapter<Samathuva
         municipality_name = list.get(position).getMunicipality_name();
         corporation_name = list.get(position).getCorporation_name();
 
+        holder.binding.samathuvapuramId.setText(String.valueOf(list.get(position).getSamathuvapuram_id()));
         if(dname != null && !dname.equals("") ){
             holder.binding.dnameLayout.setVisibility(View.VISIBLE);
             holder.binding.dname.setText(dname);

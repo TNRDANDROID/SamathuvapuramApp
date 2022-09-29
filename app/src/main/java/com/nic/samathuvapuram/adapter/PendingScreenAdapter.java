@@ -104,7 +104,11 @@ public class PendingScreenAdapter extends PagedListAdapter<ModelClass,PendingScr
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+        holder.pendingScreenAdapterBinding.samathuvapuramId.setText(String.valueOf(pendingListFiltered.get(position).getSamathuvapuram_id()));
+
         if(prefManager.getUsertype().equals("bdo")){
+            holder.pendingScreenAdapterBinding.img.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_house));
+
             holder.pendingScreenAdapterBinding.houseNoLayout.setVisibility(View.VISIBLE);
             holder.pendingScreenAdapterBinding.beneficiaryLayout.setVisibility(View.VISIBLE);
             holder.pendingScreenAdapterBinding.currentHouseUsageLayout.setVisibility(View.VISIBLE);
@@ -118,6 +122,7 @@ public class PendingScreenAdapter extends PagedListAdapter<ModelClass,PendingScr
 
         }else if(prefManager.getUsertype().equals("ae")){
             if(pendingListFiltered.get(position).getType().equals("INFRA")){
+                holder.pendingScreenAdapterBinding.img.setImageDrawable(context.getResources().getDrawable(R.drawable.infrastructure));
                 holder.pendingScreenAdapterBinding.houseNoLayout.setVisibility(View.GONE);
                 holder.pendingScreenAdapterBinding.beneficiaryLayout.setVisibility(View.GONE);
                 holder.pendingScreenAdapterBinding.currentHouseUsageLayout.setVisibility(View.GONE);
@@ -130,6 +135,8 @@ public class PendingScreenAdapter extends PagedListAdapter<ModelClass,PendingScr
                 holder.pendingScreenAdapterBinding.work.setText(String.valueOf(pendingListFiltered.get(position).getWork_name()));
 
             }else {
+                holder.pendingScreenAdapterBinding.img.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_house));
+
                 holder.pendingScreenAdapterBinding.beneficiaryLayout.setVisibility(View.GONE);
                 holder.pendingScreenAdapterBinding.currentHouseUsageLayout.setVisibility(View.GONE);
                 holder.pendingScreenAdapterBinding.conditionOfHouseLayout.setVisibility(View.VISIBLE);

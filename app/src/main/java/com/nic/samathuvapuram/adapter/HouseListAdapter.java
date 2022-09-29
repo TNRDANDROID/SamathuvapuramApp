@@ -19,6 +19,7 @@ import com.nic.samathuvapuram.dataBase.dbData;
 import com.nic.samathuvapuram.databinding.HouseListAdapterBinding;
 import com.nic.samathuvapuram.model.ModelClass;
 import com.nic.samathuvapuram.session.PrefManager;
+import com.nic.samathuvapuram.utils.Utils;
 
 import org.json.JSONObject;
 
@@ -70,6 +71,11 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.MyVi
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
 
 
+     /*   if(list.get(position).getStatus().equals("Y")){
+            holder.houseListAdapterBinding.img.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_home_check));
+        }else {
+            holder.houseListAdapterBinding.img.setImageDrawable(context.getResources().getDrawable(R.drawable.home));
+        }*/
         if(prefManager.getUsertype().equals("bdo")){
             holder.houseListAdapterBinding.houseSerialNumber.setText(String.valueOf(list.get(position).getHouse_serial_number()));
             holder.houseListAdapterBinding.currentHouseUsage.setText(list.get(position).getCurrent_usage());
@@ -96,22 +102,43 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.MyVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(prefManager.getUsertype().equals("bdo")){
-                    Intent intent = new Intent(context, SaveBlkHouseDetailsActivity.class);
-                    intent.putExtra("samathuvapuram_id",list.get(position).getSamathuvapuram_id());
-                    intent.putExtra("house_serial_number",list.get(position).getHouse_serial_number());
-                    intent.putExtra("current_name_of_the_beneficiary",list.get(position).getCurrent_name_of_the_beneficiary());
-                    intent.putExtra("is_house_owned_by_sanctioned_beneficiary",list.get(position).getIs_house_owned_by_sanctioned_beneficiary());
-                    intent.putExtra("current_community_category_id",Integer.parseInt(list.get(position).getCurrent_community_category_id()));
-                    intent.putExtra("current_house_usage",Integer.parseInt(list.get(position).getCurrent_house_usage()));
-                    intent.putExtra("current_gender",list.get(position).getCurrent_gender());
-                    intent.putExtra("current_usage",list.get(position).getCurrent_usage());
-                    context.startActivity(intent);
-                }else if(prefManager.getUsertype().equals("ae")){
-                    Intent intent = new Intent(context, SaveAeHouseDetailsActivity.class);
-                    intent.putExtra("samathuvapuram_id",list.get(position).getSamathuvapuram_id());
-                    intent.putExtra("house_serial_number",list.get(position).getHouse_serial_number());
-                    context.startActivity(intent);
+                try {
+                    if (prefManager.getUsertype().equals("bdo")) {
+                        Intent intent = new Intent(context, SaveBlkHouseDetailsActivity.class);
+                        intent.putExtra("samathuvapuram_id", list.get(position).getSamathuvapuram_id());
+                        intent.putExtra("house_serial_number", list.get(position).getHouse_serial_number());
+                        intent.putExtra("current_name_of_the_beneficiary", Utils.notNullString(list.get(position).getCurrent_name_of_the_beneficiary()));
+                        intent.putExtra("is_house_owned_by_sanctioned_beneficiary", Utils.notNullString(list.get(position).getIs_house_owned_by_sanctioned_beneficiary()));
+                        try {
+                            intent.putExtra("current_community_category_id", Utils.notNullinteger(Integer.parseInt(Utils.notNullString(list.get(position).getCurrent_community_category_id()))));
+                        }catch (NumberFormatException e){
+                            intent.putExtra("current_community_category_id", 0);
+                            e.printStackTrace();
+                        }
+                        try {
+                            intent.putExtra("current_house_usage",Utils.notNullinteger( Integer.parseInt(Utils.notNullString(list.get(position).getCurrent_house_usage()))));
+                        }catch (NumberFormatException e){
+                            intent.putExtra("current_house_usage", 0);
+                            e.printStackTrace();
+                        }
+                        intent.putExtra("current_gender", Utils.notNullString(list.get(position).getCurrent_gender()));
+                        intent.putExtra("current_usage", Utils.notNullString(list.get(position).getCurrent_usage()));
+                        context.startActivity(intent);
+                    } else if (prefManager.getUsertype().equals("ae")) {
+                        Intent intent = new Intent(context, SaveAeHouseDetailsActivity.class);
+                        intent.putExtra("samathuvapuram_id", list.get(position).getSamathuvapuram_id());
+                        intent.putExtra("house_serial_number", list.get(position).getHouse_serial_number());
+                        intent.putExtra("condition_of_house_id", list.get(position).getCondition_of_house_id());
+                        intent.putExtra("scheme_group_id", list.get(position).getScheme_group_id());
+                        intent.putExtra("scheme_id", list.get(position).getScheme_id());
+                        intent.putExtra("work_group_id", list.get(position).getWork_group_id());
+                        intent.putExtra("work_type_id", list.get(position).getWork_type_id());
+                        intent.putExtra("estimate_cost_required", list.get(position).getEstimate_cost_required());
+                        intent.putExtra("condition_of_house", list.get(position).getCondition_of_house());
+                        context.startActivity(intent);
+                    }
+                }catch (NumberFormatException e){
+                    e.printStackTrace();
                 }
 
             }

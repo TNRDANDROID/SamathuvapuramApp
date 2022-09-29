@@ -285,6 +285,7 @@ public class dbData {
             values.put("current_community_category_id", modelClass.getCurrent_community_category_id());
             values.put("current_usage", modelClass.getCurrent_usage());
             values.put("is_beneficiary_detail_required", modelClass.getIs_beneficiary_detail_required());
+            values.put("status", modelClass.getStatus());
         }else  if(prefManager.getUsertype().equals("ae")){
             values.put("samathuvapuram_id", modelClass.getSamathuvapuram_id());
             values.put("house_serial_number", modelClass.getHouse_serial_number());
@@ -299,7 +300,7 @@ public class dbData {
             values.put("work_type_id", modelClass.getWork_type_id());
             values.put("estimate_cost_required", modelClass.getEstimate_cost_required());
             values.put("condition_of_house", modelClass.getCondition_of_house());
-            
+            values.put("status", modelClass.getStatus());
         }
 
 
@@ -446,6 +447,8 @@ public class dbData {
                                 .getColumnIndexOrThrow("current_usage")));
                         card.setIs_beneficiary_detail_required(cursor.getString(cursor
                                 .getColumnIndexOrThrow("is_beneficiary_detail_required")));
+                        card.setStatus(cursor.getString(cursor
+                                .getColumnIndexOrThrow("status")));
 
                     }else if(prefManager.getUsertype().equals("ae")){
 
@@ -475,9 +478,72 @@ public class dbData {
                                 .getColumnIndexOrThrow("estimate_cost_required")));
                         card.setCondition_of_house(cursor.getString(cursor
                                 .getColumnIndexOrThrow("condition_of_house")));
+                        card.setStatus(cursor.getString(cursor
+                                .getColumnIndexOrThrow("status")));
+
 
                     }
 
+
+                    cards.add(card);
+                }
+            }
+        } catch (Exception e){
+            //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
+            e.printStackTrace();
+        } finally{
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return cards;
+    }
+    public ArrayList<ModelClass> getAll_Particular_houseDetails(String samathuvapuram_id,String house_serial_number) {
+
+        ArrayList<ModelClass> cards = new ArrayList<>();
+        Cursor cursor = null;
+        String selection;
+        String[] selectionArgs;
+        try {
+                selection = "samathuvapuram_id = ? and house_serial_number = ?";
+                selectionArgs = new String[]{samathuvapuram_id,house_serial_number};
+
+            cursor = db.query(DBHelper.HOUSE_DETAILS,new String[]{"*"},
+                    selection, selectionArgs, null, null, "house_serial_number");
+            //cursor = db.rawQuery("select * from "+DBHelper.HOUSE_LIST,null);
+            // cursor = db.query(CardsDBHelper.TABLE_CARDS,
+            //       COLUMNS, null, null, null, null, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    ModelClass card = new ModelClass();
+                    if(prefManager.getUsertype().equals("bdo")){
+                        card.setSamathuvapuram_id(cursor.getInt(cursor.getColumnIndexOrThrow("samathuvapuram_id")));
+                        card.setType(cursor.getString(cursor.getColumnIndexOrThrow("Type")));
+                        card.setHouse_serial_number(cursor.getInt(cursor.getColumnIndexOrThrow("house_serial_number")));
+                        card.setIs_house_owned_by_sanctioned_beneficiary(cursor.getString(cursor.getColumnIndexOrThrow("is_house_owned_by_sanctioned_beneficiary")));
+                        card.setCurrent_house_usage(cursor.getString(cursor.getColumnIndexOrThrow("current_house_usage")));
+                        card.setCurrent_usage_id(cursor.getInt(cursor.getColumnIndexOrThrow("current_house_usage_id")));
+                        card.setCurrent_name_of_the_beneficiary(cursor.getString(cursor.getColumnIndexOrThrow("current_name_of_the_beneficiary")));
+                        card.setCurrent_gender(cursor.getString(cursor.getColumnIndexOrThrow("current_gender")));
+                        card.setCurrent_community_category_id(cursor.getString(cursor.getColumnIndexOrThrow("current_community_category_id")));
+
+                    }else if(prefManager.getUsertype().equals("ae")){
+                        card.setSamathuvapuram_id(cursor.getInt(cursor.getColumnIndexOrThrow("samathuvapuram_id")));
+                        card.setType(cursor.getString(cursor.getColumnIndexOrThrow("Type")));
+                        card.setHouse_serial_number(cursor.getInt(cursor.getColumnIndexOrThrow("house_serial_number")));
+                        card.setCondition_of_house_id(cursor.getInt(cursor.getColumnIndexOrThrow("condition_of_house_id")));
+                        card.setCondition_of_house(cursor.getString(cursor.getColumnIndexOrThrow("condition_of_house")));
+                        card.setScheme_group_id(cursor.getInt(cursor.getColumnIndexOrThrow("scheme_group_id")));
+                        card.setScheme_name(cursor.getString(cursor.getColumnIndexOrThrow("scheme")));
+                        card.setWork_name(cursor.getString(cursor.getColumnIndexOrThrow("work")));
+                        card.setScheme_id(cursor.getInt(cursor.getColumnIndexOrThrow("scheme_id")));
+                        card.setWork_group_id(cursor.getInt(cursor.getColumnIndexOrThrow("work_group_id")));
+                        card.setWork_type_id(cursor.getInt(cursor.getColumnIndexOrThrow("work_type_id")));
+                        card.setEstimate_cost_required(cursor.getString(cursor.getColumnIndexOrThrow("estimate_cost_required")));
+                        card.setCondition_of_infra(cursor.getString(cursor.getColumnIndexOrThrow("condition_of_infra")));
+                        card.setCondition_of_infra_id(cursor.getInt(cursor.getColumnIndexOrThrow("condition_of_infra_id")));
+
+                    }
 
                     cards.add(card);
                 }
@@ -548,6 +614,63 @@ public class dbData {
         }
         return cards;
     }
+    public ArrayList<ModelClass> getAll_Particular_infraDetails(String samathuvapuram_id,String house_serial_number,String scheme_group_id
+            , String scheme_id, String work_group_id, String work_type_id) {
+
+        ArrayList<ModelClass> cards = new ArrayList<>();
+        Cursor cursor = null;
+        String selection;
+        String[] selectionArgs;
+        try {
+                selection = "samathuvapuram_id = ? and house_serial_number = ? and scheme_group_id = ? and scheme_id = ? and work_group_id = ? and work_type_id = ?";
+                selectionArgs = new String[]{samathuvapuram_id,house_serial_number,scheme_group_id,scheme_id,work_group_id,work_type_id};
+
+
+            cursor = db.query(DBHelper.INFRA_LIST,new String[]{"*"},
+                    selection, selectionArgs, null, null, null);
+            //cursor = db.rawQuery("select * from "+DBHelper.HOUSE_LIST,null);
+            // cursor = db.query(CardsDBHelper.TABLE_CARDS,
+            //       COLUMNS, null, null, null, null, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    ModelClass card = new ModelClass();
+
+                        card.setSamathuvapuram_id(cursor.getInt(cursor
+                                .getColumnIndexOrThrow("samathuvapuram_id")));
+                        card.setRepair_infra_estimate_id(cursor.getInt(cursor
+                                .getColumnIndexOrThrow("repair_infra_estimate_id")));
+                        card.setScheme_group_id(cursor.getInt(cursor
+                                .getColumnIndexOrThrow("scheme_group_id")));
+                        card.setScheme_id(cursor.getInt(cursor
+                                .getColumnIndexOrThrow("scheme_id")));
+                        card.setWork_group_id(cursor.getInt(cursor
+                                .getColumnIndexOrThrow("work_group_id")));
+                        card.setWork_type_id(cursor.getInt(cursor
+                                .getColumnIndexOrThrow("work_type_id")));
+                        card.setCondition_of_infra_id(cursor.getInt(cursor
+                                .getColumnIndexOrThrow("condition_of_infra_id")));
+                        card.setEstimate_cost_required(cursor.getString(cursor
+                                .getColumnIndexOrThrow("estimate_cost_required")));
+                        card.setCondition_of_infra(cursor.getString(cursor
+                                .getColumnIndexOrThrow("condition_of_infra")));
+                        card.setScheme_name(cursor.getString(cursor
+                                .getColumnIndexOrThrow("scheme_name")));
+                        card.setWork_name(cursor.getString(cursor
+                                .getColumnIndexOrThrow("work_name")));
+
+                    cards.add(card);
+                }
+            }
+        } catch (Exception e){
+            //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
+            e.printStackTrace();
+        } finally{
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return cards;
+    }
     public ArrayList<ModelClass> getParticularSavedHouseImage(String samathuvapuram_id,String house_serial_number) {
 
         ArrayList<ModelClass> cards = new ArrayList<>();
@@ -557,6 +680,46 @@ public class dbData {
         try {
             selection = "samathuvapuram_id = ?  and house_serial_number = ?";
             selectionArgs = new String[]{samathuvapuram_id,house_serial_number};
+
+
+            cursor = db.query(DBHelper.HOUSE_IMAGES_DETAILS,new String[]{"*"},
+                    selection, selectionArgs, null, null, "image_serial_number");
+            //cursor = db.rawQuery("select * from "+DBHelper.HOUSE_LIST,null);
+            // cursor = db.query(CardsDBHelper.TABLE_CARDS,
+            //       COLUMNS, null, null, null, null, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    ModelClass card = new ModelClass();
+                    card.setHouse_serial_number(cursor.getInt(cursor.getColumnIndexOrThrow("house_serial_number")));
+                    card.setSamathuvapuram_id(cursor.getInt(cursor.getColumnIndexOrThrow("samathuvapuram_id")));
+                    card.setImage_serial_number(cursor.getInt(cursor.getColumnIndexOrThrow("image_serial_number")));
+                    card.setLatitude(cursor.getString(cursor.getColumnIndexOrThrow("latitude")));
+                    card.setLongtitude(cursor.getString(cursor.getColumnIndexOrThrow("longitude")));
+                    card.setPhoto_type_id(cursor.getInt(cursor.getColumnIndexOrThrow("photo_type_id")));
+                    card.setImage_path(cursor.getString(cursor.getColumnIndexOrThrow("image_path")));
+
+                    cards.add(card);
+                }
+            }
+        } catch (Exception e){
+            //   Log.d(DEBUG_TAG, "Exception raised with a value of " + e);
+            e.printStackTrace();
+        } finally{
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return cards;
+    }
+    public ArrayList<ModelClass> getParticularSavedHouseImageLocal(String samathuvapuram_id,String house_serial_number,String image_serial_number) {
+
+        ArrayList<ModelClass> cards = new ArrayList<>();
+        Cursor cursor = null;
+        String selection;
+        String[] selectionArgs;
+        try {
+            selection = "samathuvapuram_id = ? and house_serial_number = ? and image_serial_number = ?";
+            selectionArgs = new String[]{samathuvapuram_id,house_serial_number,image_serial_number};
 
 
             cursor = db.query(DBHelper.HOUSE_IMAGES_DETAILS,new String[]{"*"},

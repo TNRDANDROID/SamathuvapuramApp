@@ -109,6 +109,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "work_group_id INTEGER," +
                 "work_type_id INTEGER," +
                 "estimate_cost_required TEXT," +
+                "status TEXT," +
                 "condition_of_house TEXT)");
 
         db.execSQL("CREATE TABLE " + INFRA_LIST + " ("

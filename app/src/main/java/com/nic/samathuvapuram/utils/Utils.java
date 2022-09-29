@@ -1345,4 +1345,30 @@ public class Utils {
         return dataSet;
     }
 
+    public static String notNullString(String s)  {
+        String val ="";
+        if (s != null && !s.isEmpty() && !s.equals("null")&& !s.equals("")){
+            val=s;
+        }else {
+            val="";
+        }
+            return val;
+    }
+    public static Integer notNullinteger(int s)  {
+        Integer val =s;
+        if (val != null && val != 0 && !val.equals("null")&& !val.equals("")){
+            val=s;
+        }else {
+            val=0;
+        }
+            return val;
+    }
+    public static void deleteFileDirectory(String file_path){
+        File file = new File(file_path);
+        // call deleteDirectory method to delete directory
+        // recursively
+        file.delete();
+
+    }
+
 }
