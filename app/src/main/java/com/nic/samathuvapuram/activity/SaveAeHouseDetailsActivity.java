@@ -396,7 +396,7 @@ public class SaveAeHouseDetailsActivity extends AppCompatActivity implements Api
                     String photos_required = cursor.getString(cursor.getColumnIndexOrThrow("photos_required"));
                     String work_name = cursor.getString(cursor.getColumnIndexOrThrow("work_name"));
 
-                    if(scheme_group_id == schemegroup_id && scheme_id == schemeid && category.equals("HOUSE")) {
+                    if(scheme_group_id == schemegroup_id && scheme_id == schemeid && category.equals("House")) {
                         modelClass.setScheme_group_id(schemegroup_id);
                         modelClass.setScheme_id(schemeid);
                         modelClass.setWork_group_id(work_group_id);
