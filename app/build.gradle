@@ -56,6 +56,20 @@ android {
             minifyEnabled false
             shrinkResources false
             signingConfig signingConfigs.debug
+            resValue "string", "LOGIN_URL", "https://tnrd.tn.gov.in/project/webservices_forms/login_service/login_services.php"
+            resValue "string", "BASE_SERVICES_URL", "https://tnrd.tn.gov.in/project/webservices_forms/master_services/master_services.php"
+            resValue "string", "APP_MAIN_SERVICES_URL", "https://tnrd.tn.gov.in/project/webservices_forms/samathuvapuram/samathuvapuram_services.php"
+            resValue "string", "TNRD_HOST_NAME", "tnrd.tn.gov.in"
+            resValue "string", "SUB_DOMAIN", "www.tnrd.tn.gov.in"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+/*
+        production {
+            debuggable false
+            testCoverageEnabled false
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
             resValue "string", "LOGIN_URL", "https://drdpr.tn.gov.in/project/webservices_forms/login_service/login_services.php"
             resValue "string", "BASE_SERVICES_URL", "https://drdpr.tn.gov.in/project/webservices_forms/master_services/master_services.php"
             resValue "string", "APP_MAIN_SERVICES_URL", "https://drdpr.tn.gov.in/project/webservices_forms/samathuvapuram/samathuvapuram_services.php"
@@ -63,6 +77,7 @@ android {
             resValue "string", "SUB_DOMAIN", "www.drdpr.tn.gov.in"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+*/
     }
     dexOptions {
         javaMaxHeapSize "4g"
